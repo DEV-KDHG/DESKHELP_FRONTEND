@@ -1,0 +1,19 @@
+.footer_message {
+    margin-top: 3rem;
+    gap: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;    
+  }
+
+  .footer_message button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    color: gray;
+    margin: 1.2rem 0rem 0rem 0.6rem;
+  }
+  
