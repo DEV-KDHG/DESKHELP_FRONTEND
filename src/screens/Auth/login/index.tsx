@@ -24,7 +24,7 @@ const Login = () => {
             <ButtonComponet label="Acceder" />
           </div>
           <div className={style.button_link}>
-            <ButtonLink name={"¿No tienes cuenta?"} />
+    
             <ButtonLink name={"¿Olvidastes tu contraseña?"} />
           </div>
         </div>
