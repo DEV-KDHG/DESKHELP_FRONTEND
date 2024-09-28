@@ -1,6 +1,6 @@
-import ButtonComponet from "../../../components/ui/Button";
-import ButtonLink from "../../../components/ui/ButtonLink";
-import InputComponet from "../../../components/ui/Input";
+import ButtonComponet from "../../../../components/ui/Button";
+import ButtonLink from "../../../../components/ui/ButtonLink";
+import InputComponet from "../../../../components/ui/Input";
 import style from "./login.module.css";
 
 const Login = () => {
