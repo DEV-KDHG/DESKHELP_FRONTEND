@@ -11,7 +11,11 @@ function App() {
         <Route path="/" element={<Navigate to="/helpdesk" />} />
         <Route path={"/helpdesk/*"} element={<PublicView />} />
         <Route path={"/admin/*"} element={<Private />} />
-        <Route path={"/admin"} element={<Admin/>} />
+
+
+        
+      <Route path={"/admin"} element={<Admin/>} />
+
       </Routes>
     </BrowserRouter>
   );
