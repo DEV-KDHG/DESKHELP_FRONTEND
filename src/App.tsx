@@ -10,6 +10,8 @@ function App() {
         <Route path="/" element={<Navigate to="/helpdesk" />} />
         <Route path={"/helpdesk/*"} element={<PublicView />} />
         <Route path={"/admin/*"} element={<Private />} />
+
+        
       </Routes>
     </BrowserRouter>
   );

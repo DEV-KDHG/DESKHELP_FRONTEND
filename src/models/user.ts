@@ -1,7 +1,7 @@
 export interface User {
-  name: string;
+  username: string;
   phone: string;
   password: string;
 }
 
-export type UserDto = Partial<User>;
+export type UserDto = Omit<User,"phone">;
