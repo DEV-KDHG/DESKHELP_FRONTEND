@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ButtonComponent from "../../../../components/ui/Button";
 import ButtonLink from "../../../../components/ui/ButtonLink";
 import InputComponent from "../../../../components/ui/Input";
@@ -6,15 +6,25 @@ import style from "./login.module.css";
 import { UserDto } from "../../../../models/user";
 import useCustomerForm from "../../../../hooks/form/useCustomerForm";
 import Error from "../../../../components/ui/Error";
+import { UseLogin } from "../../../../hooks/auth/useLogin";
+import { LoginDto } from "../../../../models/loginDto";
+import { login } from "../../../../services/auth/login";
 
 const Login = () => {
-  const loginSuccess = (data: UserDto) => {
+  
+
+  const { login, isPending } = UseLogin();
+  const loginSuccess = (data: LoginDto) => {
     console.log("Datos enviados:", data);
-    // Aquí puedes manejar la lógica de inicio de sesión
+
+      login({ username: data.username, password: data.password });
+ 
   };
 
+
+
   const { register, handleSubmit, errors } =
-    useCustomerForm<UserDto>(loginSuccess);
+    useCustomerForm<LoginDto>(loginSuccess);
 
   return (
     <div className={style.container}>
@@ -59,7 +69,7 @@ const Login = () => {
             />
             {errors.password && <Error>{errors.password.message}</Error>}
 
-            <ButtonComponent label="Acceder" />
+            <ButtonComponent label="Acceder"   />
           </div>
 
           <ButtonLink name="¿Olvidaste tu contraseña?" />
