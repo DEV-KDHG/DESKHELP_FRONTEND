@@ -1,0 +1,22 @@
+.container_modal_component {
+  display: flex;
+  justify-content: flex-start;
+   margin-left: 150px;
+}
+
+.container_modal_component button {
+  background-color: #0053b2;
+  color: #fff;
+  border-radius: 0.8rem;
+  width: 18rem;
+  height: 2.8rem;
+  border: none;
+  font-size: medium;
+}
+
+.container_sidebar {
+  display: flex;
+  margin-top: 13rem;
+  margin-left: -2rem;
+}
+

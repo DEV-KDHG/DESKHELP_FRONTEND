@@ -3,37 +3,39 @@
 
   top: 0;
   right: 0;
-  width: 82%;
+  width: 200vh;
+  height: 18%;
 
   background-color: #ffff;
 
-  z-index: 1000;
+ 
   padding: 1px 2px 0 0;
 }
-.container_header
-{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+.container_header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
  
-.img_logo {
-  width: 110px;
+}
 
-  margin-bottom: 2rem;
+.img_logo {
+  width: 90px;
+  padding-bottom: 122%;
+  margin-left: 120%;
 }
 
 .img_logo_container_user {
   display: flex;
   gap: 2rem;
-  margin-right: 2rem;
+  margin-left: 70%;
 }
-.img_logo_container_user p
-{
-    font-weight:bold;
-    font-size: 1rem;
-    
-color:  rgb(8, 123, 255);
+.img_logo_container_user p {
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-bottom: 12rem;
+  padding-top: 2rem;
+
+  color: rgb(8, 123, 255);
 }
 .img_logo_user {
   height: 50px;

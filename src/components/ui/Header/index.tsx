@@ -1,6 +1,11 @@
+import React, { ReactNode } from "react";
 import styles from "./Header.module.css";
 
-const Header = () => {
+interface Props{
+  children?: ReactNode;
+}
+
+const Header: React.FC<Props> = ({children}) => {
   const photoProfile =
     "https://th.bing.com/th/id/R.87e0f7000b48b1a5c60dcffbfa127722?rik=uRizEPMUk9k8uA&pid=ImgRaw&r=0";
 
@@ -10,6 +15,9 @@ const Header = () => {
       <div className={styles.container_header}>
 
       <div className={styles.img_logo_container}>
+        <div>
+          {children}
+        </div>
         <img
           className={styles.img_logo}
           src="/img/logodef.png"
