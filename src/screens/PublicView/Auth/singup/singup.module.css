@@ -4,71 +4,72 @@
   align-items: center;
   justify-content: center;
 }
-h2
-{
-    font-size: 2.4rem;
-    font-weight: 330;
+h2 {
+  font-size: 2.4rem;
+  font-weight: 330;
 }
 span {
-    color: gray;
+  color: gray;
 }
 .img_logo {
-  width: 8rem;
-  height: 8rem;
+  width: 10rem;
+  height: 10rem;
   margin-top: -2.9rem;
   margin-bottom: -2.99rem;
 }
-.forms_header
-{
-    text-align: center;
-    margin-bottom: 1rem;
-
-
+.forms_header {
+  text-align: center;
+  margin-bottom: 3rem;
+  gap: 3rem;
 }
-.form_login
-{
-    background-color: #fff;
+.form_login {
+  background-color: #fff;
   padding: 4rem;
-  width: 48rem;
-  height:72rem;
+  width: 73rem;
+  height: 60rem;
   border-radius: 1.7rem;
-
 }
-.logo_container {
+.img_logo_container {
+ margin-left: 27rem;
+ margin-bottom:1rem ;
+}
+.container_input {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Define dos columnas de igual tamaño */
+  gap: 2rem; /* Espacio entre los elementos */
+}
+
+.list,
+select {
   display: flex;
-}
-.container_input
-{
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-
-
-.list , select
-{
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 0.4rem;
-    padding: 0.6rem;
-    background-color: transparent; 
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.4rem;
+  padding: 0.6rem;
+  background-color: transparent;
 }
 
-select:focus option 
-{
-    background-color: transparent;
+select:focus option {
+  background-color: transparent;
 }
 select option:checked {
-    background-color: transparent; /* Mantener el fondo transparente */
+  background-color: transparent; /* Mantener el fondo transparente */
 }
-.list span 
-{
-    font-size: 1.2rem;
-    color: gray;
+.list span {
+  font-size: 1.2rem;
+  color: gray;
 }
-.ButtonComponet
-{
-    margin-top: 6rem;
+.ButtonComponet {
+  margin-top: 6rem;
+}
+
+.container_buttons {
+  justify-items: center;
+  margin-top: 2rem;
+  
+}
+
+.container_buttons button{
+
+    width: 49rem;
 }

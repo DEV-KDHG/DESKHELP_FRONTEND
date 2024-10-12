@@ -1,12 +1,14 @@
 export interface User {
   username: string;
   name: string;
+  cc: string;
   lastName: string;
-  idRol: string;
-  email: string;
-  phone: string;
+  mail: string;
+  phone: number;
   password: string;
-  idArea: string;
+  codeArea: number;
+  role?: string;
 }
 
-export type UserDto = Omit<User, "phone">;
+export type UserDto = Omit<User, "idRol">;
+export type updateUserDto = Partial<User>;

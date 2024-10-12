@@ -8,9 +8,9 @@ export const login = async ({
   username: string;
   password: string;
 }) => {
-  const { data  } = await helpdesk.post("ruta backend", { username, password });
+  const { data  } = await helpdesk.post("/login", { username, password });
 
   localStorage.setItem("token", JSON.stringify(data.token));
 
-  return data as User ;
+    return data as User ;
 };

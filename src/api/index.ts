@@ -20,7 +20,8 @@ a la configuración de la solicitud.
 
 helpdesk.interceptors.request.use(
   (config: any) => {
-    const token = JSON.parse(localStorage.getItem("token") || "{}");
+    //const token = JSON.parse(localStorage.getItem("token") || "{}");
+    const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

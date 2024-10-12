@@ -9,7 +9,7 @@ export const UseLogin = () => {
   const { mutate: loginMutate, isPending } = useMutation({
     mutationFn: login,   // Usa la función de login definida arriba
     onSuccess: () => {
-      navigate("/hola");
+      navigate("/admin");
     }
   });
 
