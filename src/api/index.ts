@@ -9,22 +9,16 @@ export const helpdesk = axios.create({
   },
 });
 
-/*
-#Antes de que se envíe una solicitud, se obtiene un token del localStorage.
-
-#Si el token existe, se añade un encabezado de autorización (Authorization) con el valor Bearer ${token} 
-a la configuración de la solicitud.
-
-#Si hay un error en la configuración de la solicitud, se rechaza la promesa con el error. 
-  */
-
 helpdesk.interceptors.request.use(
   (config: any) => {
-    //const token = JSON.parse(localStorage.getItem("token") || "{}");
+    // Obtener el token directamente del localStorage
     const token = localStorage.getItem("token");
+
     if (token) {
+      // Configurar el header de autorización si el token es válido
       config.headers.Authorization = `Bearer ${token}`;
     }
+
     return config;
   },
   (error: any) => {

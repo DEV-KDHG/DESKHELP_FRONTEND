@@ -9,6 +9,7 @@
   --button-padding: 10px 20px;
   --modal-max-height: 1000vh;
   --modal-max-width: 600vw;
+  --modal-width: 50vw; 
 }
 
 /* Contenedor del Modal que ocupa toda la pantalla y centra el contenido */
@@ -16,7 +17,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 150%;
+  width: 170%;
   height: 160%;
   display: flex;
   justify-content: center;
@@ -29,15 +30,12 @@
   position: fixed;
   top: 50%;
   left: 50%;
+  border-radius: 1rem;
   transform: translate(-50%, -50%);
   background-color: var(--color-white);
   padding: var(--padding);
-  border-radius: var(--border-radius);
-  z-index: 1000;
-  overflow-y: auto;
-  max-height: var(--modal-max-height);
-  max-width: var(--modal-max-width);
- 
+  width: var(--modal-width);
+  height: auto;
 }
 
 /* Encabezado del Modal */

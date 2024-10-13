@@ -12,10 +12,7 @@ function App() {
         <Route path={"/helpdesk/*"} element={<PublicView />} />
         <Route path={"/admin/*"} element={<Private />} />
 
-
-        
-      <Route path={"/admin"} element={<Admin/>} />
-
+        <Route path={"/admin"} element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );

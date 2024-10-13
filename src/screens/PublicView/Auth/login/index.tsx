@@ -1,5 +1,4 @@
 import ButtonComponent from "../../../../components/ui/Button";
-import ButtonLink from "../../../../components/ui/ButtonLink";
 import InputComponent from "../../../../components/ui/Input";
 import style from "./login.module.css";
 import useCustomerForm from "../../../../hooks/form/useCustomerForm";
@@ -11,8 +10,6 @@ const Login = () => {
   const { login, isPending } = UseLogin();
 
   const loginSuccess = (data: LoginDto) => {
-    console.log("Datos enviados:", data);
-
     login({ username: data.username, password: data.password });
   };
 
@@ -27,7 +24,7 @@ const Login = () => {
         </div>
         <form noValidate>
           <div className={style.header_form}>
-            <h2>Login Here</h2>
+            <h2>Inicia sesión aqui</h2>
             <span>¡Bienvenido de vuelta!</span>
           </div>
 
@@ -54,8 +51,6 @@ const Login = () => {
 
             <ButtonComponent label="Acceder" onClick={handleSubmit} />
           </div>
-
-          <ButtonLink name="¿Olvidaste tu contraseña?" />
         </form>
       </div>
     </div>

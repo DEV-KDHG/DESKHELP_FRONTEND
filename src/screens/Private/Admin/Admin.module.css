@@ -1,17 +1,21 @@
 .container_modal_component {
   display: flex;
   justify-content: flex-start;
-   margin-left: 150px;
+  margin-left: 150px;
+  
 }
 
 .container_modal_component button {
   background-color: #0053b2;
   color: #fff;
   border-radius: 0.8rem;
-  width: 18rem;
-  height: 2.8rem;
+  width: 14rem;
+  height: 3rem;
   border: none;
-  font-size: medium;
+  font-size: small;
+  margin-top: -3rem;
+  margin-bottom: 2rem;
+  margin-left: -9rem;
 }
 
 .container_sidebar {
@@ -20,3 +24,8 @@
   margin-left: -2rem;
 }
 
+.container_table {
+  margin-left: 5px;
+  width: 130rem;
+ 
+}

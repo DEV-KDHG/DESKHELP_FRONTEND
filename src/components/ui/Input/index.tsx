@@ -15,7 +15,7 @@ const InputComponent = forwardRef<HTMLInputElement, Props>(
       <div className={styles.Input}>
         <span>{label}</span>
         {type === "enum" && options ? (
-          <select id={id} onChange={(e) => setInfo && setInfo(e.target.value)} {...rest}>
+          <select id={id} onChange={(e) => setInfo && setInfo(e.target.value)} {...rest} className={styles.select}>
             {options.map((option) => (
               <option key={option} value={option}>
                 {option}
