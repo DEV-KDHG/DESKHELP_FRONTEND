@@ -10,6 +10,7 @@ import useCustomerForm from "../../../hooks/form/useCustomerForm";
 import { UserDto } from "../../../models/user";
 import style from "./Admin.module.css";
 import { useGetAllUsers } from "../../../hooks";
+import SearchBoxComponent from "../../../components/ui/searchBox";
 enum Role {
   Usuario = "Usuario final",
   Admin = "Administrador",
@@ -68,6 +69,10 @@ const Admin = () => {
       </div>
       <div className={style.container_sidebar}>
         <SideBarComponent />
+      </div>
+
+      <div className={style.container_search}>
+        <SearchBoxComponent placeholder={"buscar usurios"} />
       </div>
 
       <div className={style.container_modal_component}>

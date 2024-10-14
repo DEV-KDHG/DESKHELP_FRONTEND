@@ -4,7 +4,11 @@
   margin-left: 150px;
   
 }
-
+.container_search{
+  display: flex;
+  justify-content: center;
+  margin-left: 80rem;
+}
 .container_modal_component button {
   background-color: #0053b2;
   color: #fff;
