@@ -2,9 +2,8 @@
   display: flex;
   justify-content: flex-start;
   margin-left: 150px;
-  
 }
-.container_search{
+.container_search {
   display: flex;
   justify-content: center;
   margin-left: 80rem;
@@ -29,7 +28,7 @@
 }
 
 .container_table {
-  margin-left: 5px;
+  display: flex;
+ justify-content: center;
   width: 130rem;
- 
 }

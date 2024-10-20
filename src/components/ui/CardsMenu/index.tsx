@@ -4,7 +4,7 @@ import ButtonLink from "../ButtonLink";
 
 
 interface Props{
-    icon: React.ReactNode;
+    icon?: React.ReactNode;
     url?: (Event: React.MouseEvent<HTMLButtonElement>) => void;
 nameButton: string;
 

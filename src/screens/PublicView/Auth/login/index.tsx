@@ -31,7 +31,7 @@ const Login = () => {
           <div className={style.container_input}>
             <InputComponent
               id="username"
-              label="E-mail"
+              label="User-name"
               type="email"
               {...register("username", {
                 required: "El Email es obligatorio",

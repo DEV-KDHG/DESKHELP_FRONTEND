@@ -1,15 +1,14 @@
-import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
-import { singup } from "../../services/auth/userfinal";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import { singup } from "../../services";
 
 export const UseSingup = () => {
-  const navigate = useNavigate();
-
+  const queryClient = useQueryClient();
   const { mutate: SingupMutate, isPending } = useMutation({
     mutationFn: singup,
 
     onSuccess: () => {
-      navigate("/login");
+      queryClient.invalidateQueries({ queryKey: ["users"] });
     },
   });
 

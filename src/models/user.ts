@@ -6,8 +6,9 @@ export interface User {
   mail: string;
   phone: number;
   password: string;
-  codeArea: number;
+  code: number;
   role?: string;
+  areaName?:string
 }
 
 export type UserDto = Omit<User, "idRol">;

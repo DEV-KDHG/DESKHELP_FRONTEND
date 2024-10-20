@@ -1,4 +1,4 @@
-import styles from "./Button.module.css"
+import styles from "./Button.module.css";
 interface props {
   label: string;
   onClick?: () => void;
@@ -7,7 +7,7 @@ interface props {
 const ButtonComponet = ({ label, onClick }: props) => {
   return (
     <div className={styles.button}>
-      <button onClick={onClick}>{label}</button>
+      <button onClick={onClick}>{label} </button>
     </div>
   );
 };

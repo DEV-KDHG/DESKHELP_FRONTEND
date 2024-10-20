@@ -18,6 +18,7 @@ const useCustomerForm = <T extends FieldValues>(onSubmit: SubmitHandler<T>) => {
     register,
     handleSubmit: handleSubmit(submitForm),
     errors,
+    reset,
   };
 };
 

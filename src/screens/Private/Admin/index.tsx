@@ -5,12 +5,13 @@ import Header from "../../../components/ui/Header";
 import InputComponet from "../../../components/ui/Input";
 import ModalComponent from "../../../components/ui/Modal";
 import SideBarComponent from "../../../components/ui/SideBar";
-import { UseSingup } from "../../../hooks/auth/useSingup";
-import useCustomerForm from "../../../hooks/form/useCustomerForm";
 import { UserDto } from "../../../models/user";
 import style from "./Admin.module.css";
-import { useGetAllUsers } from "../../../hooks";
+import { useGetAllUsers, useInactiveUserByCode, UseSingup } from "../../../hooks";
 import SearchBoxComponent from "../../../components/ui/searchBox";
+import useCustomerForm from "../../../hooks/form/useCustomerForm";
+import ButtonInactComponent from "../../../components/uiAdmin/buttonInactive";
+
 enum Role {
   Usuario = "Usuario final",
   Admin = "Administrador",
@@ -18,10 +19,10 @@ enum Role {
 }
 const Admin = () => {
   const { singup, isPending } = UseSingup();
+  const{}= useInactiveUserByCode();
   const { isLoading, users } = useGetAllUsers();
 
   const singupSuccess = (data: UserDto) => {
-    console.log("Datos enviados:", data);
     singup({
       username: data.username,
       name: data.name,
@@ -30,19 +31,31 @@ const Admin = () => {
       mail: data.mail,
       phone: data.phone,
       password: data.password,
-      codeArea: data.codeArea,
+      code: data.code,
       role: data.role,
     });
   };
   const columns: GridColDef[] = [
-    { field: "username", headerName: "USERNAME", width: 130 },
-    { field: "name", headerName: "NOMBRE", width: 130 },
+    { field: "username", headerName: "USERNAME", width: 110 },
+    { field: "name", headerName: "NOMBRE", width: 100 },
+    { field: "lastName", headerName: "APELLIDO", width: 100 },
     { field: "cc", headerName: "CC", width: 130 },
-    { field: "lastName", headerName: "APELLIDO", width: 130 },
-    { field: "mail", headerName: "CORREO", width: 200 },
-    { field: "phone", headerName: "TELEFONO", width: 130 },
-    { field: "codeArea", headerName: "CODIGO DE AREA ", width: 130 },
-    { field: "role", headerName: "ROL", width: 130 },
+    { field: "mail", headerName: "CORREO", width: 150 },
+    { field: "phone", headerName: "TELEFONO", width: 110 },
+    { field: "code", headerName: "AREA", width: 90 },
+    { field: "areaName", headerName: "NOMBRE AREA", width: 254},
+    { field: "role", headerName: "ROL", width: 80 },
+    {
+      field: "actions",
+      headerName: "ACCIONES",
+      width: 120,
+   
+      renderCell: (params) => (
+        <>
+          <ButtonInactComponent/>
+        </>
+      ),
+    },
   ];
 
   const rows =
@@ -54,7 +67,8 @@ const Admin = () => {
       lastName: user.lastName,
       mail: user.mail,
       phone: user.phone,
-      codeArea: user.codeArea,
+      code: user.code,
+      areaName: user.areaName,
       role: user.role,
     })) || [];
 
@@ -67,26 +81,35 @@ const Admin = () => {
         {" "}
         <Header />
       </div>
+
       <div className={style.container_sidebar}>
         <SideBarComponent />
       </div>
 
       <div className={style.container_search}>
-        <SearchBoxComponent placeholder={"buscar usurios"} />
+        <SearchBoxComponent placeholder={"buscar usurios por CC"} />
       </div>
 
       <div className={style.container_modal_component}>
         <ModalComponent title={"Nuevo usurio"} onClick={handleSubmit}>
-          <InputComponet id="mail" label="E-mail" type="email" />
+          <InputComponet
+            id="mail"
+            label="E-mail"
+            type="email"
+            {...register("mail", {
+              required: "El e-mail es obligatorio",
+            })}
+          />{" "}
+          {errors.username && <Error>{errors.username.message}</Error>}
           <InputComponet
             id="username"
             label="user-name"
             type="text"
             {...register("username", {
-              required: "El nombre de usuario es obligatorio",
+              required: "El user-name es obligatorio",
             })}
           />
-          {errors.username && <Error>{errors.username.message}</Error>}
+          {errors.username?.message && <Error>{errors.username.message}</Error>}
           <InputComponet
             id="password"
             label="Contraseña"
@@ -131,11 +154,11 @@ const Admin = () => {
             id="codigo-de-area"
             label="Codigo de area"
             type="text"
-            {...register("codeArea", {
+            {...register("code", {
               required: "El código de área es obligatorio",
             })}
           />
-          {errors.codeArea?.message && <Error>{errors.codeArea.message}</Error>}
+          {errors.code?.message && <Error>{errors.code.message}</Error>}
           <InputComponet
             id="telefono"
             label="Telefono"
@@ -148,8 +171,7 @@ const Admin = () => {
           <InputComponet
             id="role"
             label="Role"
-            type="enum"
-            options={Object.values(Role)}
+            type="text"
             {...register("role", {
               required: "El rol es obligatorio",
             })}
@@ -159,7 +181,7 @@ const Admin = () => {
       </div>
 
       <div className={style.container_table}>
-        <Paper sx={{ height: 450, width: "104%" }}>
+        <Paper sx={{ height: 450, width: "96%" }}>
           <DataGrid
             rows={rows}
             columns={columns}
@@ -167,10 +189,10 @@ const Admin = () => {
             pageSizeOptions={[5, 10]}
             sx={{
               "& .MuiDataGrid-cell": {
-                fontSize: "1.2rem", // Tamaño de letra para las celdas
+                fontSize: "1.3rem", // Tamaño de letra para las celdas
               },
               "& .MuiDataGrid-columnHeaders": {
-                fontSize: "1.2rem", // Tamaño de letra para los encabezados de columna
+                fontSize: "1.4rem", // Tamaño de letra para los encabezados de columna
               },
             }}
           />
