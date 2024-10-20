@@ -10,16 +10,15 @@ export const UseLogin = () => {
     onSuccess: (data) => {
       const { role } = data;
       const path =
-        role === "Admin"
+        role === "ADMIN"
           ? "/admin"
-          : role === "Usuario"
+          : role === "USER"
           ? "/usuario"
-          : role === "Agente"
+          : role === "AGENT"
           ? "/agente"
-          : "/login";
+          : "/";
 
-      navigate(path);
-      navigate(path);
+           navigate(path);
     },
   });
 
