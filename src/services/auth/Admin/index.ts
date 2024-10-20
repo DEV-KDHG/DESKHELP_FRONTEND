@@ -1,5 +1,11 @@
+import { jwtDecode } from "jwt-decode";
 import { helpdesk } from "../../../api";
 import { User, UserDto } from "../../../models/user";
+
+
+  interface JwtPayload {
+    role: string;
+  }
 
 export const login = async ({
   username,
@@ -10,7 +16,13 @@ export const login = async ({
 }) => {
   const { data } = await helpdesk.post("/login", { username, password });
   localStorage.setItem("token", data.token);
-  return data as User;
+
+  const decodedToken = jwtDecode<JwtPayload>(data.token);
+const role = decodedToken.role;
+
+
+
+  return {...data, role};
 };
 
 export const getAllusers = async () => {

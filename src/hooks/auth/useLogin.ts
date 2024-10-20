@@ -4,13 +4,23 @@ import { login } from "../../services/auth/Admin";
 
 export const UseLogin = () => {
   const navigate = useNavigate();
- 
 
   const { mutate: loginMutate, isPending } = useMutation({
-    mutationFn: login,  
-    onSuccess: () => {
-      navigate("/admin");
-    }
+    mutationFn: login,
+    onSuccess: (data) => {
+      const { role } = data;
+      const path =
+        role === "Admin"
+          ? "/admin"
+          : role === "Usuario"
+          ? "/usuario"
+          : role === "Agente"
+          ? "/agente"
+          : "/login";
+
+      navigate(path);
+      navigate(path);
+    },
   });
 
   return { login: loginMutate, isPending };
