@@ -6,7 +6,7 @@ export interface User {
   mail: string;
   phone: number;
   password: string;
-  code: number;
+  codeArea: string;
   role?: string;
   areaName?:string
 }

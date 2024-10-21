@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { singup } from "../../services";
 
-export const UseSingup = () => {
+export const useSingup = () => {
   const queryClient = useQueryClient();
   const { mutate: SingupMutate, isPending } = useMutation({
     mutationFn: singup,

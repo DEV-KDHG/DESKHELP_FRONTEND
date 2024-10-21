@@ -1,4 +1,4 @@
-import { Paper } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Error from "../../../components/ui/Error";
 import Header from "../../../components/ui/Header";
@@ -7,7 +7,11 @@ import ModalComponent from "../../../components/ui/Modal";
 import SideBarComponent from "../../../components/ui/SideBar";
 import { UserDto } from "../../../models/user";
 import style from "./Admin.module.css";
-import { useGetAllUsers, useInactiveUserByCode, UseSingup } from "../../../hooks";
+import {
+  useGetAllUsers,
+  useInactiveUserByCode,
+  useSingup,
+} from "../../../hooks";
 import SearchBoxComponent from "../../../components/ui/searchBox";
 import useCustomerForm from "../../../hooks/form/useCustomerForm";
 import ButtonInactComponent from "../../../components/uiAdmin/buttonInactive";
@@ -18,11 +22,12 @@ enum Role {
   Agente = "Agente",
 }
 const Admin = () => {
-  const { singup, isPending } = UseSingup();
-  const{}= useInactiveUserByCode();
+  const { singup, isPending } = useSingup();
+  /*const {useInactiveUser,isError} = useInactiveUserByCode(); */
   const { isLoading, users } = useGetAllUsers();
 
   const singupSuccess = (data: UserDto) => {
+    console.log("Datos enviados:", data);
     singup({
       username: data.username,
       name: data.name,
@@ -31,7 +36,7 @@ const Admin = () => {
       mail: data.mail,
       phone: data.phone,
       password: data.password,
-      code: data.code,
+      codeArea: data.codeArea,
       role: data.role,
     });
   };
@@ -43,16 +48,26 @@ const Admin = () => {
     { field: "mail", headerName: "CORREO", width: 150 },
     { field: "phone", headerName: "TELEFONO", width: 110 },
     { field: "code", headerName: "AREA", width: 90 },
-    { field: "areaName", headerName: "NOMBRE AREA", width: 254},
+    { field: "areaName", headerName: "NOMBRE AREA", width: 254 },
     { field: "role", headerName: "ROL", width: 80 },
     {
       field: "actions",
       headerName: "ACCIONES",
       width: 120,
-   
+
       renderCell: (params) => (
         <>
-          <ButtonInactComponent/>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100%",
+              width: "100%",
+            }}
+          >
+            <ButtonInactComponent code={params.row.code} />
+          </Box>
         </>
       ),
     },
@@ -67,7 +82,7 @@ const Admin = () => {
       lastName: user.lastName,
       mail: user.mail,
       phone: user.phone,
-      code: user.code,
+      codeArea: user.codeArea,
       areaName: user.areaName,
       role: user.role,
     })) || [];
@@ -154,11 +169,11 @@ const Admin = () => {
             id="codigo-de-area"
             label="Codigo de area"
             type="text"
-            {...register("code", {
+            {...register("codeArea", {
               required: "El código de área es obligatorio",
             })}
           />
-          {errors.code?.message && <Error>{errors.code.message}</Error>}
+          {errors.codeArea?.message && <Error>{errors.codeArea.message}</Error>}
           <InputComponet
             id="telefono"
             label="Telefono"
