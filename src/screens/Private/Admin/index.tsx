@@ -7,7 +7,7 @@ import ModalComponent from "../../../components/ui/Modal";
 import SideBarComponent from "../../../components/ui/SideBar";
 import { UserDto } from "../../../models/user";
 import style from "./Admin.module.css";
-import { useGetAllUsers, useSingup } from "../../../hooks";
+import { useGetAllUsers, useInactiveUserByCode, useSingup } from "../../../hooks";
 import SearchBoxComponent from "../../../components/ui/searchBox";
 import useCustomerForm from "../../../hooks/form/useCustomerForm";
 import MenuButtonComponent from "../../../components/uiAdmin/buttonMenu";
@@ -20,7 +20,8 @@ enum Role {
   Agente = "Agente",
 }
 const Admin = () => {
-  const { singup, isPending } = useSingup();
+  const {userDeactivate,isError, isPending: isDeactivatePending}= useInactiveUserByCode();
+  const { singup, isPending: isSingupPending } = useSingup();
   const { isLoading: isUsersLoading, users } = useGetAllUsers();
   const [filteredUsers, setFilteredUsers] = useState<UserDto[] | null>(null);
   const [cc, setCc] = useState<string>("");
@@ -71,7 +72,7 @@ const Admin = () => {
               width: "100%",
             }}
           >
-            <MenuButtonComponent code={params.row.code} />
+            <MenuButtonComponent onClick={()=>userDeactivate(params.row.code)} isPending={isDeactivatePending}  />
           </Box>
         </>
       ),

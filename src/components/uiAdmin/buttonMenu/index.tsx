@@ -4,13 +4,13 @@ import EditIcon from "./icons/index";
 import LockIcon from "./icons/inactive";
 import { Modal } from "@mui/material";
 import AlertIcon from "./icons/alertInactive";
-import { useInactiveUserByCode } from "../../../hooks";
-interface props{
-  code:number
-}
-const MenuButtonComponent = ({code}:props) => {
 
-  const { userDeactivate, isError, isPending } = useInactiveUserByCode();
+interface props{
+  onClick: ()=> void,
+  isPending: boolean;
+}
+const MenuButtonComponent = ({onClick,isPending}:props) => {
+
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -23,15 +23,8 @@ const MenuButtonComponent = ({code}:props) => {
   };
 
   const handleDeactivate = () => {
-    userDeactivate(code, {
-      onSuccess: () => {
-      
-        setIsModalOpen(false); // Cerrar el modal tras desactivar exitosamente
-      },
-      onError: (err) => {
-        console.error("Error al desactivar el usuario:", err); // Manejo de errores
-      },
-    });
+    onClick();
+  setIsModalOpen(false);
   };
 
   return (

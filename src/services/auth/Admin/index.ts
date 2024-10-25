@@ -42,3 +42,8 @@ export const searchUserByCC = async (cc: number)=>{
   const {data} = await helpdesk.get(`/user/findByCC?cc=${cc}`)
   return data[0]  as User;
 }
+
+export const updateUserByCode = async (code: number)=>{
+  
+  const {data}= await helpdesk.put(`/`)
+}
