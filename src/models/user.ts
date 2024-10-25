@@ -4,7 +4,7 @@ export interface User {
   cc: string;
   lastName: string;
   mail: string;
-  phone: number;
+  phone: string | null;
   password: string;
   codeArea: string;
   code?: string,

@@ -39,6 +39,6 @@ export const inactivarUser = async (code: number) => {
 };
 
 export const searchUserByCC = async (cc: number)=>{
-  const {data} = await helpdesk.get(`/findByCC?cc=${cc}`)
-  return data as User;
+  const {data} = await helpdesk.get(`/user/findByCC?cc=${cc}`)
+  return data[0]  as User;
 }

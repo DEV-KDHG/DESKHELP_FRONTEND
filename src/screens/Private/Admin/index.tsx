@@ -27,19 +27,20 @@ const Admin = () => {
   const { isLoading: isUserLoading, user } = useSearchUserByCc(Number(cc));
   const [debouncedCc, setDebouncedCc] = useState<string>(cc);
 
-  useEffect(()=>{
-    const handler = setTimeout(()=>{
+  useEffect(() => {
+    const handler = setTimeout(() => {
       setDebouncedCc(cc);
-    },300); // retrasa el valor ingresado en sbox
+    }, 300); // retrasa el valor ingresado en sbox
 
-    return ()=> clearTimeout(handler);
-  },[cc])
+    return () => clearTimeout(handler);
+  }, [cc]);
+
   useEffect(() => {
     setFilteredUsers(cc && user ? [user] : users ?? []);
   }, [cc, user, users]);
 
   const singupSuccess = async (data: UserDto) => {
-    console.log("Datos enviados:", data);
+   
     await singup({
       ...data,
     });
@@ -80,20 +81,21 @@ const Admin = () => {
   const rows =
     filteredUsers?.map((user, index) => ({
       id: index,
-      username: user.username,
-      name: user.name,
-      cc: user.cc,
-      lastName: user.lastName,
-      mail: user.mail,
-      phone: user.phone,
-      code: user.code,
-      areaName: user.areaName,
-      role: user.role,
+      username: user.username || "",
+      name: user.name || "",
+      cc: user.cc || "",
+      lastName: user.lastName || "",
+      mail: user.mail || "",
+      phone: user.phone || "",
+      code: user.code ? String(user.code) : "",
+      areaName: user.areaName || "",
+      role: user.role || "",
     })) || [];
 
   const paginationModel = { page: 0, pageSize: 5 };
   const { register, handleSubmit, errors } =
     useCustomerForm<UserDto>(singupSuccess);
+ 
   return (
     <>
       <div>
