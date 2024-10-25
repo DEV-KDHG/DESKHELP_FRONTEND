@@ -2,10 +2,9 @@ import { jwtDecode } from "jwt-decode";
 import { helpdesk } from "../../../api";
 import { User, UserDto } from "../../../models/user";
 
-
-  interface JwtPayload {
-    role: string;
-  }
+interface JwtPayload {
+  role: string;
+}
 
 export const login = async ({
   username,
@@ -18,26 +17,28 @@ export const login = async ({
   localStorage.setItem("token", data.token);
 
   const decodedToken = jwtDecode<JwtPayload>(data.token);
-const role = decodedToken.role;
+  const role = decodedToken.role;
 
-
-
-  return {...data, role};
+  return { ...data, role };
 };
 
 export const getAllusers = async () => {
   const { data } = await helpdesk.get(`/user/users/getAll`);
   return data as User[];
-  };
+};
 
 export const singup = async (user: UserDto) => {
   const { data } = await helpdesk.post("/register", user);
   return data as User;
 };
 
-export const inactivarUser = async (code: number)=>{
-  const {data}= await helpdesk.put(`/user/deactivate/${code}`)
+export const inactivarUser = async (code: number) => {
+  const { data } = await helpdesk.put(`/user/deactivate?code=${code}`);
+
   return data;
+};
+
+export const searchUserByCC = async (cc: number)=>{
+  const {data} = await helpdesk.get(`/findByCC?cc=${cc}`)
+  return data as User;
 }
-
-

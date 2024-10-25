@@ -7,14 +7,12 @@ import ModalComponent from "../../../components/ui/Modal";
 import SideBarComponent from "../../../components/ui/SideBar";
 import { UserDto } from "../../../models/user";
 import style from "./Admin.module.css";
-import {
-  useGetAllUsers,
-  useInactiveUserByCode,
-  useSingup,
-} from "../../../hooks";
+import { useGetAllUsers, useSingup } from "../../../hooks";
 import SearchBoxComponent from "../../../components/ui/searchBox";
 import useCustomerForm from "../../../hooks/form/useCustomerForm";
-import ButtonInactComponent from "../../../components/uiAdmin/buttonInactive";
+import MenuButtonComponent from "../../../components/uiAdmin/buttonMenu";
+import { useSearchUserByCc } from "../../../hooks/Admin";
+import { useEffect, useState } from "react";
 
 enum Role {
   Usuario = "Usuario final",
@@ -23,21 +21,27 @@ enum Role {
 }
 const Admin = () => {
   const { singup, isPending } = useSingup();
-  /*const {useInactiveUser,isError} = useInactiveUserByCode(); */
-  const { isLoading, users } = useGetAllUsers();
+  const { isLoading: isUsersLoading, users } = useGetAllUsers();
+  const [filteredUsers, setFilteredUsers] = useState<UserDto[] | null>(null);
+  const [cc, setCc] = useState<string>("");
+  const { isLoading: isUserLoading, user } = useSearchUserByCc(Number(cc));
+  const [debouncedCc, setDebouncedCc] = useState<string>(cc);
 
-  const singupSuccess = (data: UserDto) => {
+  useEffect(()=>{
+    const handler = setTimeout(()=>{
+      setDebouncedCc(cc);
+    },300); // retrasa el valor ingresado en sbox
+
+    return ()=> clearTimeout(handler);
+  },[cc])
+  useEffect(() => {
+    setFilteredUsers(cc && user ? [user] : users ?? []);
+  }, [cc, user, users]);
+
+  const singupSuccess = async (data: UserDto) => {
     console.log("Datos enviados:", data);
-    singup({
-      username: data.username,
-      name: data.name,
-      cc: data.cc,
-      lastName: data.lastName,
-      mail: data.mail,
-      phone: data.phone,
-      password: data.password,
-      codeArea: data.codeArea,
-      role: data.role,
+    await singup({
+      ...data,
     });
   };
   const columns: GridColDef[] = [
@@ -47,7 +51,7 @@ const Admin = () => {
     { field: "cc", headerName: "CC", width: 130 },
     { field: "mail", headerName: "CORREO", width: 150 },
     { field: "phone", headerName: "TELEFONO", width: 110 },
-    { field: "code", headerName: "AREA", width: 90 },
+    { field: "code", headerName: "CODIGO", width: 90 },
     { field: "areaName", headerName: "NOMBRE AREA", width: 254 },
     { field: "role", headerName: "ROL", width: 80 },
     {
@@ -66,7 +70,7 @@ const Admin = () => {
               width: "100%",
             }}
           >
-            <ButtonInactComponent code={params.row.code} />
+            <MenuButtonComponent code={params.row.code} />
           </Box>
         </>
       ),
@@ -74,7 +78,7 @@ const Admin = () => {
   ];
 
   const rows =
-    users?.map((user, index) => ({
+    filteredUsers?.map((user, index) => ({
       id: index,
       username: user.username,
       name: user.name,
@@ -82,7 +86,7 @@ const Admin = () => {
       lastName: user.lastName,
       mail: user.mail,
       phone: user.phone,
-      codeArea: user.codeArea,
+      code: user.code,
       areaName: user.areaName,
       role: user.role,
     })) || [];
@@ -102,7 +106,10 @@ const Admin = () => {
       </div>
 
       <div className={style.container_search}>
-        <SearchBoxComponent placeholder={"buscar usurios por CC"} />
+        <SearchBoxComponent
+          setInfo={setCc}
+          placeholder={"buscar usurios por CC"}
+        />
       </div>
 
       <div className={style.container_modal_component}>

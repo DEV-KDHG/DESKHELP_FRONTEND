@@ -3,10 +3,10 @@ import { inactivarUser } from "../../services";
 
 export const useInactiveUserByCode =()=>{
 
-    const{ mutate:useInactiveUser ,isError}= useMutation({
+    const{ mutate:useInactiveUser ,isError, isPending}= useMutation({
 
         mutationFn: inactivarUser,
     });
 
-    return{useInactiveUser,isError}
+    return{ userDeactivate: useInactiveUser,isError, isPending}
 }
