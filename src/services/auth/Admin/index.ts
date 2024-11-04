@@ -1,6 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import { helpdesk } from "../../../api";
-import { User, UserDto } from "../../../models/user";
+import { updateUserDto, User, UserDto } from "../../../models/user";
 
 interface JwtPayload {
   role: string;
@@ -24,7 +24,12 @@ export const login = async ({
 
 export const getAllusers = async () => {
   const { data } = await helpdesk.get(`/user/users/getAll`);
-  return data as User[];
+  const users = data as User[];
+
+  const activeUsers = users.filter(user=> user.state === 'A');
+  const deactivateUsers = users.filter(user=> user.state === 'I')
+
+  return {activeUsers, deactivateUsers};
 };
 
 export const singup = async (user: UserDto) => {
@@ -38,12 +43,22 @@ export const inactivarUser = async (code: number) => {
   return data;
 };
 
-export const searchUserByCC = async (cc: number)=>{
-  const {data} = await helpdesk.get(`/user/findByCC?cc=${cc}`)
-  return data[0]  as User;
-}
+export const searchUserByCC = async (cc: number) => {
+  const { data } = await helpdesk.get(`/user/findByCC?cc=${cc}`);
+  return data[0] as User;
+};
 
-export const updateUserByCode = async (code: number)=>{
-  
-  const {data}= await helpdesk.put(`/`)
-}
+//Jonh
+export const updateUserByCode = async (updateUser: updateUserDto ) => {
+  const { data } = await helpdesk.put(`/user/updateByCode`,null,{
+    params:{
+      code: updateUser.code,
+      name: updateUser.name,
+      lastName: updateUser.lastName,
+      mail: updateUser.mail,
+      phone: updateUser.phone,
+      role: updateUser.role
+    }
+  });
+  return data;
+};

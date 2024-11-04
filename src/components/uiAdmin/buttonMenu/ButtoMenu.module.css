@@ -84,6 +84,7 @@
   top: 9rem;
   position: absolute;
   text-align: center;
+  
 }
 
 .title {
@@ -91,6 +92,7 @@
   font-size: 2rem;
   font-weight: 600;
 }
+
 
 .message {
   color: gray;
@@ -145,4 +147,35 @@
 
 .cancel:hover {
   background-color: #cccccc;
+}
+
+.container_modal_edit{
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}
+
+
+.confir_edit , .cancel_edit{
+
+  height: 4rem;
+  width: 25rem;
+  margin-left: 2rem;
+  border: none;
+  border-radius: 0.50rem;
+  font-size: 1.4rem;
+  color: #ffffff;
+  cursor: pointer;
+}
+.confir_edit{
+  background-color: #0053b2;
+
+}
+.cancel_edit{
+  background-color: #a6a6a6;
+}
+
+.container_modal_edit{
+  position: relative;
+  top: 55rem;
 }

@@ -8,5 +8,7 @@ export const useGetAllUsers = () => {
     queryFn: () => getAllusers(),
   });
 
-   return { isLoading, users };
+  const { activeUsers, deactivateUsers } = users || {};
+
+   return { isLoading, activeUsers,deactivateUsers };
 };

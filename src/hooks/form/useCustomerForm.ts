@@ -1,13 +1,13 @@
 
-import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import { useForm, SubmitHandler, FieldValues, DefaultValues } from "react-hook-form";
 
-const useCustomerForm = <T extends FieldValues>(onSubmit: SubmitHandler<T>) => {
+const useCustomerForm = <T extends FieldValues>(onSubmit: SubmitHandler<T>,defaultValues?:DefaultValues<T>) => {
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<T>();
+  } = useForm<T>({defaultValues});
 
   const submitForm = (data: T) => {
     onSubmit(data);

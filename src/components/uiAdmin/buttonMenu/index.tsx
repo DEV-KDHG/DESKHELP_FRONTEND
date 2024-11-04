@@ -5,26 +5,51 @@ import LockIcon from "./icons/inactive";
 import { Modal } from "@mui/material";
 import AlertIcon from "./icons/alertInactive";
 
-interface props{
-  onClick: ()=> void,
-  isPending: boolean;
+interface Props {
+  onDeactivate: () => void;
+  onEdit: () => void;
+  isPendingDeactivate: boolean;
+  isPendingEdit: boolean;
+  label: string;
+  title: string;
+  children?: React.ReactNode;
+
 }
-const MenuButtonComponent = ({onClick,isPending}:props) => {
-
+const MenuButtonComponent: React.FC<Props> = ({
+  onDeactivate,
+  onEdit,
+  isPendingDeactivate,
+  isPendingEdit,
+  label,
+  title,
+  children,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeactivateModalOpen, setIsDeactivateModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  const openClose = () => {
-    setIsModalOpen(!isModalOpen);
-    setIsOpen(false); // Cierra el menú al abrir/cerrar el modal
+  const openDeactiveModal = () => {
+    setIsDeactivateModalOpen(!isDeactivateModalOpen);
+    setIsOpen(false); //cierra el menu button
   };
+
+  const openEditModal = () => {
+    setIsEditModalOpen(!isEditModalOpen);
+    setIsOpen(false);
+  };
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   const handleDeactivate = () => {
-    onClick();
-  setIsModalOpen(false);
+    onDeactivate(),
+    setIsDeactivateModalOpen(false);
+  };
+
+  const handleEdit = () => {
+    onEdit(),
+    setIsEditModalOpen(false);
   };
 
   return (
@@ -34,41 +59,64 @@ const MenuButtonComponent = ({onClick,isPending}:props) => {
       </button>
       {isOpen && (
         <div className={style.menu}>
-          <button onClick={openClose}>
+          <button onClick={openDeactiveModal}>
             <LockIcon width="16px" height="16px" />
             <span> INACTIVAR</span>
           </button>
 
-          <button>
+          <button onClick={openEditModal}>
             <EditIcon width="16px" height="16px" />
-            <span> EDITAR USER</span>
+            <span> EDITAR</span>
           </button>
         </div>
       )}
-      <Modal open={isModalOpen} onClose={openClose}>
+      <Modal open={isDeactivateModalOpen} onClose={openDeactiveModal}>
         <div className={style.modal}>
           <div className={style.image}>
             <AlertIcon />
           </div>
           <div className={style.content}>
-            <span className={style.title}> Desactivar cuenta</span>
-            <p className={style.message}>
-              ¿Estas seguro que quieres desactivar esta cuenta? Todos los datos
-              de este usuario seran removidos hasta que sea activado nuevamemte.
-            </p>
+            <span className={style.title}> {title}</span>
+            <p className={style.message}>{label}</p>
           </div>
           <div className={style.actions}>
-            <button className={style.desactivate} 
-            onClick={handleDeactivate}
-            disabled={isPending}
-            type="button">
+            <button
+              className={style.desactivate}
+              onClick={handleDeactivate}
+              disabled={isPendingDeactivate}
+              type="submit"
+            >
               Desactivar
             </button>
-            <button className={style.cancel} type="button" onClick={openClose}>
+            <button
+              className={style.cancel}
+              type="button"
+              onClick={openDeactiveModal}
+            >
               Cancelar
             </button>
           </div>
         </div>
+      </Modal>
+
+      {/* MODAL EDITAR */}
+      <Modal open={isEditModalOpen} onClose={openEditModal}>
+        <>
+          {children}
+
+          <div className={style.container_modal_edit}>
+            <button className={style.cancel_edit} onClick={openEditModal}>
+              cancelar
+            </button>
+
+            <button className={style.confir_edit} type="submit"
+            onClick={handleEdit}
+            disabled={isPendingEdit}
+            >
+              confirmar
+            </button>
+          </div>
+        </>
       </Modal>
     </div>
   );

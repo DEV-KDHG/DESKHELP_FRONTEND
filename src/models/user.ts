@@ -7,6 +7,7 @@ export interface User {
   phone: string | null;
   password: string;
   codeArea: string;
+  state?:string;
   code?: string,
   role?: string;
   areaName?:string

@@ -5,14 +5,19 @@ import Header from "../../../components/ui/Header";
 import InputComponet from "../../../components/ui/Input";
 import ModalComponent from "../../../components/ui/Modal";
 import SideBarComponent from "../../../components/ui/SideBar";
-import { UserDto } from "../../../models/user";
+import { updateUserDto, UserDto } from "../../../models/user";
 import style from "./Admin.module.css";
-import { useGetAllUsers, useInactiveUserByCode, useSingup } from "../../../hooks";
+import {
+  useGetAllUsers,
+  useInactiveUserByCode,
+  useSingup,
+} from "../../../hooks";
 import SearchBoxComponent from "../../../components/ui/searchBox";
 import useCustomerForm from "../../../hooks/form/useCustomerForm";
 import MenuButtonComponent from "../../../components/uiAdmin/buttonMenu";
 import { useSearchUserByCc } from "../../../hooks/Admin";
 import { useEffect, useState } from "react";
+import { useUpdateUser } from "../../../hooks/Admin/useUpdateUser";
 
 enum Role {
   Usuario = "Usuario final",
@@ -20,13 +25,33 @@ enum Role {
   Agente = "Agente",
 }
 const Admin = () => {
-  const {userDeactivate,isError, isPending: isDeactivatePending}= useInactiveUserByCode();
+  const {
+    userDeactivate,
+    isError,
+    isPending: isDeactivatePending,
+  } = useInactiveUserByCode();
   const { singup, isPending: isSingupPending } = useSingup();
-  const { isLoading: isUsersLoading, users } = useGetAllUsers();
+  const { isLoading: isUsersLoading, activeUsers } = useGetAllUsers();
   const [filteredUsers, setFilteredUsers] = useState<UserDto[] | null>(null);
   const [cc, setCc] = useState<string>("");
   const { isLoading: isUserLoading, user } = useSearchUserByCc(Number(cc));
   const [debouncedCc, setDebouncedCc] = useState<string>(cc);
+  const { updateUser, isPending: isPendingUpdate } = useUpdateUser();
+  const updateUserSuccess = async (data: updateUserDto) => {
+    await updateUser({
+      ...data,
+    });
+  };
+  const {
+    register: registerUpdate,
+    handleSubmit: handleSubmitUpdate,
+    errors: errorsUpdate,
+    reset,
+  } = useCustomerForm<updateUserDto>(updateUserSuccess);
+
+  const handledEdit = (userData: updateUserDto) => {
+    reset(userData);
+  };
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -37,15 +62,15 @@ const Admin = () => {
   }, [cc]);
 
   useEffect(() => {
-    setFilteredUsers(cc && user ? [user] : users ?? []);
-  }, [cc, user, users]);
+    setFilteredUsers(cc && user ? [user] : activeUsers ?? []);
+  }, [cc, user, activeUsers]);
 
   const singupSuccess = async (data: UserDto) => {
-   
     await singup({
       ...data,
     });
   };
+
   const columns: GridColDef[] = [
     { field: "username", headerName: "USERNAME", width: 110 },
     { field: "name", headerName: "NOMBRE", width: 100 },
@@ -72,7 +97,112 @@ const Admin = () => {
               width: "100%",
             }}
           >
-            <MenuButtonComponent onClick={()=>userDeactivate(params.row.code)} isPending={isDeactivatePending}  />
+            <MenuButtonComponent
+              onDeactivate={() => userDeactivate(params.row.code)}
+              isPendingDeactivate={isDeactivatePending}
+              onEdit={handleSubmitUpdate}
+              isPendingEdit={isPendingUpdate}
+              title={"Desactivar cuenta"}
+              label={
+                "¿Estas seguro que quieres desactivar esta cuenta? Todos los datos" +
+                "de este usuario seran removidos hasta que sea activado nuevamemte"
+              }
+            >
+              <div className={style.modal_edit}>
+                <h1>EDITAR USUARIO</h1>
+                <form >
+                  <div className={style.container_input_edit}>
+                    <InputComponet
+                      id="mail"
+                      label="E-mail"
+                      type="email"
+                      {...registerUpdate("mail", {
+                        required: "El e-mail es obligatorio",
+                      })}
+                    />{" "}
+                    {errors.username && (
+                      <Error>{errors.username.message}</Error>
+                    )}
+                    <InputComponet
+                      id="username"
+                      label="user-name"
+                      type="text"
+                      {...registerUpdate("username", {
+                        required: "El user-name es obligatorio",
+                      })}
+                    />
+                    {errors.username?.message && (
+                      <Error>{errors.username.message}</Error>
+                    )}
+                   
+                    <InputComponet
+                      id="nombre"
+                      label="Nombre"
+                      type="text"
+                      {...registerUpdate("name", {
+                        required: "El nombre es obligatorio",
+                      })}
+                    />{" "}
+                    {errors.name?.message && (
+                      <Error>{errors.name.message}</Error>
+                    )}
+                    <InputComponet
+                      id="apellido"
+                      label="Apellido"
+                      type="text"
+                      {...registerUpdate("lastName", {
+                        required: "El apellido es obligatorio",
+                      })}
+                    />{" "}
+                    {errors.lastName?.message && (
+                      <Error>{errors.lastName.message}</Error>
+                    )}
+                    <InputComponet
+                      id="cc"
+                      label="CC"
+                      type="number"
+                      {...registerUpdate("cc", {
+                        required: "El CC es obligatorio",
+                      })}
+                    />{" "}
+                    {errors.cc?.message && <Error>{errors.cc.message}</Error>}
+                    <InputComponet
+                      id="codigo-de-usuario"
+                      label="Codigo usuario"
+                      type="text"
+                      {...registerUpdate("code", {
+                        required: "El código es obligatorio",
+                      })}
+                    />
+                    {errors.codeArea?.message && (
+                      <Error>{errors.codeArea.message}</Error>
+                    )}
+                    <InputComponet
+                      id="telefono"
+                      label="Telefono"
+                      type="number"
+                      {...registerUpdate("phone", {
+                        required: "El teléfono es obligatorio",
+                      })}
+                    />{" "}
+                    {errors.phone?.message && (
+                      <Error>{errors.phone.message}</Error>
+                    )}
+                    <InputComponet
+                      id="role"
+                      label="Role"
+                      type="text"
+                      {...registerUpdate("role", {
+                        required: "El rol es obligatorio",
+                      })}
+                    />
+                    {errors.role?.message && (
+                      <Error>{errors.role.message}</Error>
+                    )}
+                  </div>
+                </form>
+              </div>
+            </MenuButtonComponent>
           </Box>
         </>
       ),
@@ -96,7 +226,7 @@ const Admin = () => {
   const paginationModel = { page: 0, pageSize: 5 };
   const { register, handleSubmit, errors } =
     useCustomerForm<UserDto>(singupSuccess);
- 
+
   return (
     <>
       <div>
