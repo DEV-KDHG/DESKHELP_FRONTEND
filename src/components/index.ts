@@ -7,4 +7,8 @@ export * from './ui/Input/index';
 export * from './ui/Modal/index';
 export * from './ui/searchBox/index';
 export * from './ui/SideBar/index';
+export * from './uiAdmin/buttonMenu/icons/alertInactive';
+export * from './uiAdmin/buttonMenu/icons/inactive';
+export * from './uiAdmin/buttonMenu/icons/index';
 export * from './uiAdmin/buttonMenu/index';
+export * from './uiAdmin/forms/index';
