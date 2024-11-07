@@ -6,12 +6,12 @@ import { Modal } from "@mui/material";
 import AlertIcon from "./icons/alertInactive";
 
 interface Props {
-  onDeactivate: () => void;
+  onDeactivate: () => void|undefined;
   onEdit: () => void;
-  isPendingDeactivate: boolean;
-  isPendingEdit: boolean;
-  label: string;
-  title: string;
+  isPendingDeactivate?: boolean;
+  isPendingEdit?: boolean;
+  label?: string;
+  title?: string;
   children?: React.ReactNode;
 
 }
