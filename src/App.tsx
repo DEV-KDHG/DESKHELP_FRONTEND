@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Private from "./screens/Private";
 import PublicView from "./screens/PublicView";
 import Admin from "./screens/Private/Admin";
+import Area from "./screens/Private/Area";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<Navigate to="/helpdesk" />} />
         <Route path={"/helpdesk/*"} element={<PublicView />} />
         <Route path={"/admin/*"} element={<Private />} />
+        <Route path={"/area"} element={<Area />} />
 
         <Route path={"/admin"} element={<Admin />} />
       </Routes>
