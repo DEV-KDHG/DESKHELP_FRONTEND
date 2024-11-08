@@ -1,7 +1,8 @@
 import { helpdesk } from "../../api";
 import { Status, StatusDto } from "../../models/status";
 
-export const CreateSatus = async (status: StatusDto, statusEntity: string) => {
+export const CreateSatus = async (status: StatusDto) => {
+  const {statusEntity}= status;
   const { data } = await helpdesk.post("/status/create", status, {
     params: { statusEntity },
   });
