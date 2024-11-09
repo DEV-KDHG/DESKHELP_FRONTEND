@@ -2,7 +2,7 @@ import { helpdesk } from "../../api";
 import { Status, StatusDto } from "../../models/status";
 
 export const CreateSatus = async (status: StatusDto) => {
-  const {statusEntity}= status;
+  const { statusEntity } = status;
   const { data } = await helpdesk.post("/status/create", status, {
     params: { statusEntity },
   });
@@ -32,7 +32,8 @@ export const GetAllInactiveStatus = async (
   return data as Status[];
 };
 
-export const UpdateStatus = async (code: string, status: StatusDto) => {
+export const UpdateStatus = async (status: StatusDto) => {
+  const { code } = status;
   const { data } = await helpdesk.put(`/status/update`, status, {
     params: { code },
   });
