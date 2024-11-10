@@ -4,6 +4,7 @@ import Private from "./screens/Private";
 import PublicView from "./screens/PublicView";
 import Admin from "./screens/Private/Admin";
 import Area from "./screens/Private/Area";
+import Status from "./screens/Private/status";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path={"/helpdesk/*"} element={<PublicView />} />
         <Route path={"/admin/*"} element={<Private />} />
         <Route path={"/area"} element={<Area />} />
+        <Route path={"/estado"} element={<Status />} />
 
         <Route path={"/admin"} element={<Admin />} />
       </Routes>

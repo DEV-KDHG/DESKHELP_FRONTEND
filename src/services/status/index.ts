@@ -1,4 +1,5 @@
 import { helpdesk } from "../../api";
+import { PaginatedResponse } from "../../models/paginateData";
 import { Status, StatusDto } from "../../models/status";
 
 export const CreateSatus = async (status: StatusDto) => {
@@ -19,7 +20,7 @@ export const GetAllStatus = async (
 ) => {
   const url = `/status?page=${page}&size=${size}&sortBy=${sortBy}&direction=${direction}&statusEntity=${statusEntity}`;
   const { data } = await helpdesk.get(url);
-  return data as Status[];
+  return data as PaginatedResponse<StatusDto>;
 };
 export const GetAllInactiveStatus = async (
   page: number = 0,
@@ -29,7 +30,7 @@ export const GetAllInactiveStatus = async (
 ) => {
   const url = `/status?page=${page}&size=${size}&sortBy=${sortBy}&direction=${direction}&statusEntity=INACTIVE`;
   const { data } = await helpdesk.get(url);
-  return data as Status[];
+  return data as PaginatedResponse<StatusDto>;
 };
 
 export const UpdateStatus = async (status: StatusDto) => {
