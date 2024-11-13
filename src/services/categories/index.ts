@@ -41,6 +41,8 @@ export const UpdateCategory = async (category: CategoryDto) => {
   const { data } = await helpdesk.put("/category/update", category, {
     params: { code },
   });
+
+  return data;
 };
 
 export const InactiveCategory = async (code: string) => {
