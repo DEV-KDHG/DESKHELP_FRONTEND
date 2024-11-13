@@ -5,6 +5,7 @@ import PublicView from "./screens/PublicView";
 import Admin from "./screens/Private/Admin";
 import Area from "./screens/Private/Area";
 import Status from "./screens/Private/status";
+import { Priorities } from "./screens";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path={"/admin/*"} element={<Private />} />
         <Route path={"/area"} element={<Area />} />
         <Route path={"/estado"} element={<Status />} />
+        <Route path={"/priorities"} element={<Priorities />} />
 
         <Route path={"/admin"} element={<Admin />} />
       </Routes>
