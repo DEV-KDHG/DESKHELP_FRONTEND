@@ -1,5 +1,5 @@
 import StartOutlinedIcon from "@mui/icons-material/StartOutlined";
-import styles from './Sidebar.module.css';
+import styles from "./Sidebar.module.css";
 import {
   Box,
   Drawer,
@@ -30,15 +30,16 @@ const SideBarComponent = () => {
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
         {[
-          "Home",
-          "My Dashboard",
-          "Servicios",
-          "Administracion de cuentas",
-          "Categorias",
-          "Administracion de areas",
-        ].map((text) => (
+          { text: "Home", path: "/dashboard_admin" },
+          { text: "Admin Dashboard", path: "/dashboard_admin" },
+          { text: "Servicios", path: "/servicios" },
+          { text: "Administracion de cuentas", path: "/admin" },
+          { text: "Categorias", path: "/categoria" },
+          { text: "Administracion de areas", path: "/area" },
+          { text: "Estados de tickets", path: "/estado" },
+        ].map(({ text, path }) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={handledNavigation(path)}>
               <ListItemText
                 primary={text}
                 primaryTypographyProps={{ fontSize: "1.4rem" }}
@@ -49,18 +50,20 @@ const SideBarComponent = () => {
       </List>
       <Divider />
       <List>
-        {["Historial de tickets", "Trazabilidad de tickets", "Prioridad"].map(
-          (text) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemText
-                  primary={text}
-                  primaryTypographyProps={{ fontSize: "1.4rem" }}
-                />
-              </ListItemButton>
-            </ListItem>
-          )
-        )}
+        {[
+          { text: "Historial de tickets", path: "/historial-tickets" },
+          { text: "Trazabilidad de tickets", path: "/trazabilidad-tickets" },
+          { text: "Prioridad", path: "/priorities" },
+        ].map(({ text, path }) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton onClick={handledNavigation(path)}>
+              <ListItemText
+                primary={text}
+                primaryTypographyProps={{ fontSize: "1.4rem" }}
+              />
+            </ListItemButton>
+          </ListItem>
+        ))}
       </List>
     </Box>
   );
@@ -68,8 +71,8 @@ const SideBarComponent = () => {
   return (
     <div>
       <Button onClick={toggleDrawer(true)}>
-        <div className={styles.icon_container }>
-          <StartOutlinedIcon fontSize={"large"}  color={"primary"}/>
+        <div className={styles.icon_container}>
+          <StartOutlinedIcon fontSize={"large"} color={"primary"} />
         </div>
       </Button>
       <Drawer open={open} onClose={toggleDrawer(false)}>

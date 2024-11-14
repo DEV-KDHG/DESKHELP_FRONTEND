@@ -11,7 +11,7 @@ export const UseLogin = () => {
       const { role } = data;
       const path =
         role === "ADMIN"
-          ? "/area"
+          ? "/dashboard_admin"
           : role === "USER"
           ? "/usuario"
           : role === "AGENT"

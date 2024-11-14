@@ -19,10 +19,11 @@ export const searchAreaByCode = async (code: string) => {
 };
 
 export const updateArea = async (area: AreaDto) => {
+  const { code, name } = area;
   const { data } = await helpdesk.put(`/area/update-name`, null, {
     params: {
-      code: area.code,
-      newName: area.name,
+      code,
+      name,
     },
   });
 
