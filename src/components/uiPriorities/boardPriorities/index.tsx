@@ -6,16 +6,21 @@ import MenuButtonComponent from "../../uiAdmin/buttonMenu";
 import { Box, Paper } from "@mui/material";
 import FormUpdatePriorities from "../formsEdit";
 import style from "./Board.module.css"
+import { useState } from "react";
 const BoardPrioritiesComponet = () => {
   const { isLoading, priorities } = useGetAllPriorities();
-
+  const [selectCode, setSelectCode] = useState<string | undefined>(undefined);
   const { isPending: isPendingUpdatePriorities, UpdatePrioritiesMutate } =
     useUpdatePriorities();
-  const updatePrioritiesSucces = async (data: UpdatePrioritiesDto) => {
-    await UpdatePrioritiesMutate({
-      ...data,
-    });
-  };
+
+    
+    const updatePrioritiesSucces = async (data: UpdatePrioritiesDto) => {
+      await UpdatePrioritiesMutate({
+        ...data,
+        code: selectCode ?? undefined, // Si selectCode es null, usa undefined
+      });
+      setSelectCode(undefined); // Restablecer selectCode después de actualizar
+    };
 
   const {
     register: registerUpdate,
@@ -24,6 +29,12 @@ const BoardPrioritiesComponet = () => {
     reset,
   } = useCustomerForm<UpdatePrioritiesDto>(updatePrioritiesSucces);
 
+const handleGetCodeSelect=(code:string)=>{
+  setSelectCode(code);
+  reset();
+}
+
+   
   const columns: GridColDef[] = [
     { field: "code", headerName: "CODIGO", width: 100 },
     { field: "name", headerName: "NOMBRE", width: 120 },
@@ -75,7 +86,7 @@ const BoardPrioritiesComponet = () => {
   return (
     <>
       <div className={style.container_table_priorities}>
-        <Paper sx={{ height: 450, width: "70%" }}>
+        <Paper sx={{ height: 450, width: "80%" }}>
           <DataGrid
             rows={rows}
             columns={columns}
