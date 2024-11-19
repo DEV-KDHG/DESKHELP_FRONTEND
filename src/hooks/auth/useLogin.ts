@@ -15,7 +15,7 @@ export const UseLogin = () => {
           : role === "USER"
           ? "/usuario"
           : role === "AGENT"
-          ? "/agente"
+          ? "/admin"
           : "/";
 
            navigate(path);
