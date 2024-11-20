@@ -1,12 +1,12 @@
 export interface Tickets {
   affair: string;
   body: string;
-  file: string;
-  codeUserCreate: number;
-  codeUserAssigne: number;
-  codeCategory: number;
-  codePriorities: number;
-  codeStatus: number;
+  file?: File | null;
+  codeUserCreate: string;
+  codeUserAssigne: string;
+  codeCategory: string;
+  codePriorities: string;
+  codeStatus: string;
 }
 export type TicketsDto = Omit<Tickets, "id_tickets">;
 export type UpdateTicketsDto = Partial<Tickets>;

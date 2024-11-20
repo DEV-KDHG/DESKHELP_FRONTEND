@@ -8,6 +8,7 @@ import Status from "./screens/Private/status";
 import { Priorities } from "./screens";
 import Category from "./screens/Private/category";
 import DashboardAdmin from "./screens/Private/dashboardAdmin";
+import CreateTicket from "./components/uiTickets/uiCreate";
 
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
         <Route path={"/priorities"} element={<Priorities />} />
         <Route path={"/categoria"} element={<Category />} />
         <Route path={"/admin"} element={<Admin />} />
+        <Route path={"/ticket"} element={<CreateTicket />} />
+
       </Routes>
     </BrowserRouter>
   );
