@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllOpenTickets } from "../../services/tickets";
 
-export const useGettAlTicketOpen = () => {
+export const useGetAllTicketOpen  = () => {
   const { data: ticketOpen, isLoading } = useQuery({
     queryKey: ["ticket"],
     queryFn: () => getAllOpenTickets(),
