@@ -8,8 +8,7 @@ import Status from "./screens/Private/status";
 import { Priorities } from "./screens";
 import Category from "./screens/Private/category";
 import DashboardAdmin from "./screens/Private/dashboardAdmin";
-
-
+ 
 function App() {
   return (
     <BrowserRouter>
@@ -18,7 +17,8 @@ function App() {
         <Route path={"/helpdesk/*"} element={<PublicView />} />
         <Route path={"/admin/*"} element={<Private />} />
         <Route path={"/area"} element={<Area />} />
-        <Route path={"/dashboard_admin"} element={<DashboardAdmin/>}/>
+ 
+        <Route path={"/dashboard_admin"} element={<DashboardAdmin />} />
         <Route path={"/estado"} element={<Status />} />
         <Route path={"/priorities"} element={<Priorities />} />
         <Route path={"/categoria"} element={<Category />} />
