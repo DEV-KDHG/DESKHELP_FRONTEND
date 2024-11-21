@@ -2,6 +2,7 @@ export * from './Admin/useGetAllUsers';
 export * from './Admin/useInactiveUserByCode';
 export * from './Admin/useSearchUserByCc';
 export * from './Admin/useUpdateUser';
+export * from './User/useGetUserInSession';
 export * from './area/useGetAllAreas';
 export * from './area/useRegisterArea';
 export * from './area/useSearchAreaByCode';
