@@ -37,3 +37,17 @@ export type ticketGetMultiFilters = {
   status?: string;
   userAssigned?: string;
 };
+
+
+export type TicketInProcces= {
+  code: number;
+  affair: string;
+  body: string;
+  createDate: string;
+  file: string | null;
+  fullNameUserCrea: string;
+  fullNameUserAsignado: string;
+  categoryName: string;
+  priorityName: string;
+  statusName: string;
+}

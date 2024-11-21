@@ -3,6 +3,7 @@ import {
   AssignTicketDto,
   ticketGetMultiFilters,
   TicketGetOpen,
+  TicketInProcces,
   Tickets,
   TicketsDto,
   UpdateTicketsStatusDto,
@@ -84,12 +85,12 @@ export const getCountStadic = async ({
 
 export const getAllTicketsInProcess = async () => {
   const { data } = await helpdesk.get("tickets/inProcess");
-  return data;
+  return data as TicketInProcces[];
 };
 
 export const getAllTicketsInProcessInSession = async () => {
   const { data } = await helpdesk.get("/tickets/in-progress-tickets");
-  return data;
+  return data as TicketGetOpen[];
 };
 
 export const getAllOpenTickets = async () => {
