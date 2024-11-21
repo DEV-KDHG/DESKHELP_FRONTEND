@@ -5,6 +5,6 @@ export * from './useGetAllTicketByStatus';
 export * from './useGetAllTicketInProcess';
 export * from './useGetAllTicketOpenInSession';
 export * from './useGetTicketsMultiFilters';
-export * from './useGettAlTicketOpen';
+export * from './useGetAllTicketOpen ';
 export * from './useUpdateStatusTicketByCode';
 export * from './useUpdateTicketAssign';

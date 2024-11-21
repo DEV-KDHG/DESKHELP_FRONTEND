@@ -10,5 +10,5 @@ export const useGetAllUsers = () => {
 
   const { activeUsers, deactivateUsers } = users || {};
 
-   return { isLoading, activeUsers,deactivateUsers };
+  return { isLoading, activeUsers, deactivateUsers };
 };

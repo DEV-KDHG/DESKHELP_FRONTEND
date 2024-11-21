@@ -18,7 +18,7 @@ export const saveTicket = async (ticket: TicketsDto) => {
 export const getOpenTicketsInSession = async () => {
   const { data } = await helpdesk.get("/tickets/open-tickets");
 
-  return data as TicketGetOpen;
+  return data as TicketGetOpen[];
 };
 
 export const getAllTicketsByStatus = async ({ status }: { status: string }) => {
@@ -96,7 +96,7 @@ export const getAllTicketsInProcessInSession = async () => {
 export const getAllOpenTickets = async () => {
   const { data } = await helpdesk.get("/tickets/listOpen");
 
-  return data as Tickets;
+  return data as TicketGetOpen[];
 };
 
 export const getTicketByMutiByFilter = async ({
@@ -117,7 +117,7 @@ export const getTicketByMutiByFilter = async ({
 export const getAllTicket = async () => {
   const { data } = await helpdesk.get("/tickets/list ");
 
-  return data as Tickets;
+  return data as TicketGetOpen[];
 };
 
 export const updateStatusTicketsBycode = async (
@@ -145,11 +145,11 @@ export const assignTicketToUser = async (ticket: AssignTicketDto) => {
 export const getTicketClosed = async () => {
   const { data } = await helpdesk.get("/tickets/closed");
 
-  return data;
+  return data as TicketGetOpen[];
 };
 
 export const getTicketClosedInSession = async () => {
   const { data } = await helpdesk.get("/tickets/closed-tickets");
 
-  return data;
+  return data as TicketGetOpen[];
 };
