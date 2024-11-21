@@ -33,8 +33,8 @@ const ClosedTicketList = () => {
   ];
 
   return (
-    <div style={{ padding: "20px" }}>
-      <Paper sx={{ height: 500, width: "100%" }}>
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+      <Paper sx={{ height: 500, width: "79%" }}>
         <DataGrid
           rows={rows}
           columns={columns}

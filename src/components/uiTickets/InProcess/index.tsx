@@ -33,7 +33,7 @@ const ListTicketsInProcess = () => {
     statusName: ticket.statusName,
   })) || [];
   return (
-    <div>
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
       <Paper sx={{ height: 450, width: "100%" }}>
         <DataGrid
           rows={rows}

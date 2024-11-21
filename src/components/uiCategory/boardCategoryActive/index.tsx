@@ -80,7 +80,7 @@ const BoardCategoryACtiveComponent = () => {
 
   return (
     <>
-    <div className={style.container_table_status}>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "55vh" }}>
       <Paper sx={{ height: 450, width: "45%"}}>
         <DataGrid
           rows={rows}
