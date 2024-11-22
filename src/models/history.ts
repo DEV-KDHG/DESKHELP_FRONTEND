@@ -1,4 +1,5 @@
 export interface History {
+  ticketCode:string;
   advance: string;
   file: string;
 }

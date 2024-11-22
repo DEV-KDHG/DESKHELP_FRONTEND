@@ -5,11 +5,14 @@ interface Props {
   id?: string;
   label?: string;
   type?: string;
+  value?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>; // onChange is now optional
+
   options?: string[];
 }
 
 const InputComponent = forwardRef<HTMLInputElement | HTMLSelectElement, Props>(
-  ({ label, type, id, options, ...rest }, ref) => {
+  ({ label, value,type, onChange ,id, options, ...rest }, ref) => {
     return (
       <div className={styles.Input}>
         <span>{label}</span>
@@ -30,6 +33,8 @@ const InputComponent = forwardRef<HTMLInputElement | HTMLSelectElement, Props>(
         ) : (
           <input
             id={id}
+            value={value}
+            onChange={onChange}
             type={type}
             ref={ref as React.Ref<HTMLInputElement>} // Usamos el ref correctamente para el input
             {...rest} // Descomponemos las props restantes (register)

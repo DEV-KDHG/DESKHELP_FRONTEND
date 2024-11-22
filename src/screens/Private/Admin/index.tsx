@@ -152,8 +152,8 @@ const Admin = () => {
         </ModalComponent>
       </div>
 
-      <div className={style.container_table}>
-        <Paper sx={{ height: 450, width: "96%" }}>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "50vh" }}>
+        <Paper sx={{ height: 450, width: "69%" }}>
           <DataGrid
             rows={rows}
             columns={columns}

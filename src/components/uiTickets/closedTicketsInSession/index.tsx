@@ -33,7 +33,7 @@ export const ClosedTicketsInSession = () => {
   ];
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
       <Paper sx={{ height: 500, width: "100%" }}>
         <DataGrid
           rows={rows}

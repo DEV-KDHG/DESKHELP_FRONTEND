@@ -9,23 +9,43 @@ import { Priorities } from "./screens";
 import Category from "./screens/Private/category";
 import DashboardAdmin from "./screens/Private/dashboardAdmin";
 
+import TicketsAdmin from "./screens/Private/TicketsAdmin";
+import CountStadisticChart from "./components/uiTickets/CountStadistic";
 
+
+
+
+
+import TicketList from "./components/uiTickets/ticketsList";
+import SeeHistory from "./components/uiTickets/seeHistory";
 
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+      
+      <Route path={"/ti"} element={<TicketList />} />
+
         <Route path="/" element={<Navigate to="/helpdesk" />} />
         <Route path={"/helpdesk/*"} element={<PublicView />} />
         <Route path={"/admin/*"} element={<Private />} />
+        <Route path={"/h"} element={<SeeHistory />} />
+        <Route path={"/ti"} element={<TicketList />} />
         <Route path={"/area"} element={<Area />} />
- 
         <Route path={"/dashboard_admin"} element={<DashboardAdmin />} />
         <Route path={"/estado"} element={<Status />} />
         <Route path={"/priorities"} element={<Priorities />} />
         <Route path={"/categoria"} element={<Category />} />
         <Route path={"/admin"} element={<Admin />} />
+        <Route path={"/tickects-admin"} element={<TicketsAdmin />} />
+        <Route path={"/e"} element={<CountStadisticChart />} />
+
+     
+
+        
+
+
         
 
       </Routes>

@@ -1,10 +1,8 @@
 import { helpdesk } from "../../api";
 import { HistoryDto, HistoryRecord } from "../../models/history";
 
-export const saveHistory = async (
-  { ticketCode }: { ticketCode: string },
-  history: HistoryDto
-) => {
+export const saveHistory = async (history: HistoryDto) => {
+  const { ticketCode } = history;
   const { data } = await helpdesk.post("/history/advance", history, {
     params: { ticketCode },
   });
