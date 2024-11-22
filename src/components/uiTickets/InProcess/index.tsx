@@ -1,22 +1,26 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useGetAllTicketInProcess } from "../../../hooks"
 import { Paper } from "@mui/material";
-
+import style from "./process.module.css"
 
 const ListTicketsInProcess = () => {
     const{ticketInProcces:tickets, isLoading}=useGetAllTicketInProcess();
     
   const columns: GridColDef[] = [
-    { field: "code", headerName: "Código", width: 130 },
-    { field: "affair", headerName: "Asunto", width: 230 },
+    { field: "code", headerName: "Código", width: 100 },
+    { field: "affair", headerName: "Asunto", width: 130 },
     { field: "body", headerName: "Cuerpo", width: 230 },
-    { field: "createDate", headerName: "Fecha de Creación", width: 180 },
+    { field: "createDate", headerName: "Fecha de Creación", width: 145 },
     { field: "file", headerName: "Archivo", width: 130 },
-    { field: "fullNameUserCrea", headerName: "Usuario Creador", width: 180 },
-    { field: "fullNameUserAsignado", headerName: "Usuario Asignado", width: 180 },
-    { field: "categoryName", headerName: "Categoría", width: 130 },
-    { field: "priorityName", headerName: "Prioridad", width: 130 },
-    { field: "statusName", headerName: "Estado", width: 130 },
+    { field: "fullNameUserCrea", headerName: "Usuario Creador", width: 100 },
+    { field: "fullNameUserAsignado", headerName: "Usuario Asignado", width: 100 },
+    { field: "categoryName", headerName: "Categoría", width: 120 },
+    { field: "priorityName", headerName: "Prioridad", width: 100 },
+    { field: "statusName", headerName: "Estado", width: 120, 
+      renderCell: (params) => (
+        <span className={style.Text}>{params.value}</span>
+      )
+    },
   ];
 
   const rows = tickets?.map((ticket, index) => ({
@@ -33,8 +37,8 @@ const ListTicketsInProcess = () => {
     statusName: ticket.statusName,
   })) || [];
   return (
-    <div>
-      <Paper sx={{ height: 450, width: "100%" }}>
+  
+      <Paper sx={{ height: 450, width: "135%" }}>
         <DataGrid
           rows={rows}
           columns={columns}
@@ -47,19 +51,17 @@ const ListTicketsInProcess = () => {
           sx={{
             "& .MuiDataGrid-cell": {
               fontSize: "1.3rem",
-              paddingLeft: "80px",
-              paddingRight: "140px",
-              textAlign: "center",
+              
             },
             "& .MuiDataGrid-columnHeaders": {
               fontSize: "1.4rem",
-              paddingLeft: "55px",
+             
               textAlign: "center",
             },
           }}
         />
       </Paper>
-    </div>
+   
   )
 }
 

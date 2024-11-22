@@ -8,8 +8,17 @@ import Status from "./screens/Private/status";
 import { Priorities } from "./screens";
 import Category from "./screens/Private/category";
 import DashboardAdmin from "./screens/Private/dashboardAdmin";
+
+import TicketsAdmin from "./screens/Private/TicketsAdmin";
+import CountStadisticChart from "./components/uiTickets/CountStadistic";
+
+
+
+
+
 import TicketList from "./components/uiTickets/ticketsList";
 import SeeHistory from "./components/uiTickets/seeHistory";
+
 
 function App() {
   return (
@@ -29,6 +38,16 @@ function App() {
         <Route path={"/priorities"} element={<Priorities />} />
         <Route path={"/categoria"} element={<Category />} />
         <Route path={"/admin"} element={<Admin />} />
+        <Route path={"/tickects-admin"} element={<TicketsAdmin />} />
+        <Route path={"/e"} element={<CountStadisticChart />} />
+
+     
+
+        
+
+
+        
+
       </Routes>
     </BrowserRouter>
   );
