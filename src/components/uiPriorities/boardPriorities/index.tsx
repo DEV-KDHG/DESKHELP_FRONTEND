@@ -60,6 +60,7 @@ const handleGetCodeSelect=(code:string)=>{
             <MenuButtonComponent
               onEdit={handleSubmitUpdate}
               onDeactivate={() => {}}
+              shouldShowDeactivateButton={false}
             >
               <FormUpdatePriorities
                 errorsUpdate={errorsUpdate}

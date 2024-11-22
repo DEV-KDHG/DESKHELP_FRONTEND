@@ -1,13 +1,11 @@
 import { UseFormRegister } from "react-hook-form";
-import { AreaDto } from "../../../models/area";
+import { UpdateAreaRequest } from "../../../models/area";
 import InputComponent from "../../ui/Input";
 import Error from "../../ui/Error";
-
 import style from "./FormEditArea.module.css";
 
-
 interface PropsFormArea {
-  registerUpdate: UseFormRegister<AreaDto>;
+  registerUpdate: UseFormRegister<UpdateAreaRequest>;
   errorsUpdate: Record<string, { message?: string }>;
 }
 
@@ -22,16 +20,15 @@ export const FormEditArea = ({
       <h1>EDITAR AREA</h1>
       <form>
         <InputComponent
-          id="name"
-          label="name"
+          id="newName"
+          label="newName"
           type="text"
-          {...registerUpdate("name", {
-            required: "El nombre es obligatorio",
+          {...registerUpdate("newName", {
+            required: "El nuevo nombre es obligatorio",
           })}
         />
-        {errorsUpdate.code && <Error>{errorsUpdate.code.message}</Error>}{" "}
+        {errorsUpdate.newName && <Error>{errorsUpdate.newName.message}</Error>}
         {/* Accediendo a 'errorsUpdate' */}
-        
         <InputComponent
           id="code"
           label="code"
@@ -42,7 +39,6 @@ export const FormEditArea = ({
         />
         {errorsUpdate.name && <Error>{errorsUpdate.name.message}</Error>}{" "}
         {/* Accediendo a 'errorsUpdate' */}
-
       </form>
     </div>
   );

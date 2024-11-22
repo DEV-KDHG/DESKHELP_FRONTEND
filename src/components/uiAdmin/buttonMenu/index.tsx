@@ -13,6 +13,7 @@ interface Props {
   label?: string;
   title?: string;
   children?: React.ReactNode;
+  shouldShowDeactivateButton?: boolean;
 
 }
 const MenuButtonComponent: React.FC<Props> = ({
@@ -23,6 +24,7 @@ const MenuButtonComponent: React.FC<Props> = ({
   label,
   title,
   children,
+  shouldShowDeactivateButton = true,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDeactivateModalOpen, setIsDeactivateModalOpen] = useState(false);
@@ -59,10 +61,12 @@ const MenuButtonComponent: React.FC<Props> = ({
       </button>
       {isOpen && (
         <div className={style.menu}>
-          <button onClick={openDeactiveModal}>
-            <LockIcon width="16px" height="16px" />
-            <span> INACTIVAR</span>
-          </button>
+          {shouldShowDeactivateButton && (
+            <button onClick={openDeactiveModal}>
+              <LockIcon width="16px" height="16px" />
+              <span> INACTIVAR</span>
+            </button>
+          )}
 
           <button onClick={openEditModal}>
             <EditIcon width="16px" height="16px" />

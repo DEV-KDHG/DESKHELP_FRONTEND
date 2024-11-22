@@ -14,7 +14,7 @@ const FormUpdateCategoryComponent = ({ registerUpdate, errorsUpdate}:propsForms)
   return (
     <>
     <div className={style.modal_edit}>
-      <h1>Actualizar Estado</h1>
+      <h1>Actualizar Categoria</h1>
       <form>
         <div className={style.container_input_edit}>
           <InputComponent

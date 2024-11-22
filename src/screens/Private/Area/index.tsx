@@ -1,7 +1,11 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useRegisterArea } from "../../../hooks/area/useRegisterArea";
 import useCustomerForm from "../../../hooks/form/useCustomerForm";
-import { AreaDto, UpdateAreaDto } from "../../../models/area";
+import {
+  AreaDto,
+  UpdateAreaDto,
+  UpdateAreaRequest,
+} from "../../../models/area";
 import { Box, Paper } from "@mui/material";
 import { useGetAllAreas } from "../../../hooks/area/useGetAllAreas";
 import { useEffect, useState } from "react";
@@ -12,10 +16,7 @@ import SearchBoxComponent from "../../../components/ui/searchBox";
 import InputComponent from "../../../components/ui/Input";
 import ModalComponent from "../../../components/ui/Modal";
 import Error from "../../../components/ui/Error";
-
 import style from "./Area.module.css";
-import Header from "../../../components/ui/Header";
-import { updateUserDto } from "../../../models/user";
 import MenuButtonComponent from "../../../components/uiAdmin/buttonMenu";
 import { Form } from "react-router-dom";
 import { FormEditArea } from "../../../components/uiArea/formsEditArea";
@@ -28,7 +29,7 @@ const Area = () => {
   const [filteredAreas, setFilteredAreas] = useState<AreaDto[] | null>(null);
   const { updateArea, isPending: inPendingUpdate } = useUpdateArea();
 
-  const updateAreaSuccess = async (data: UpdateAreaDto) => {
+  const updateAreaSuccess = async (data: UpdateAreaRequest) => {
     await updateArea({
       ...data,
     });
@@ -37,7 +38,7 @@ const Area = () => {
     register: registerUpdate,
     handleSubmit: handleSubmitUpdate,
     errors: errorsUpdate,
-  } = useCustomerForm<UpdateAreaDto>(updateAreaSuccess);
+  } = useCustomerForm<UpdateAreaRequest>(updateAreaSuccess);
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -60,8 +61,8 @@ const Area = () => {
   };
 
   const columns: GridColDef[] = [
-    { field: "name", headerName: "NOMBRE", width: 100 },
-    { field: "state", headerName: "ESTADO", width: 100 },
+    { field: "name", headerName: "NOMBRE", width: 150 },
+    { field: "state", headerName: "ESTADO", width: 110 },
     { field: "code", headerName: "CÓDIGO", width: 90 },
     {
       field: "actions",
@@ -80,11 +81,12 @@ const Area = () => {
           <MenuButtonComponent
             onEdit={handleSubmitUpdate}
             onDeactivate={() => {}}
+            shouldShowDeactivateButton={false}
           >
             <FormEditArea
               errorsUpdate={errorsUpdate}
               registerUpdate={registerUpdate}
-             />
+            />
           </MenuButtonComponent>
         </Box>
       ),
@@ -104,10 +106,6 @@ const Area = () => {
 
   return (
     <div>
-      <div className="">
-        <Header />
-      </div>
-
       <div className={style.container_sidebar}>
         <SideBarComponent />
       </div>

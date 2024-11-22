@@ -13,7 +13,7 @@ const FormUpdatePriorities = ({ registerUpdate, errorsUpdate }: propsForms) => {
   return (
     <>
       <div className={style.modal_edit}>
-        <h1>Actualizar Estado</h1>
+        <h1>Actualizar Prioridad</h1>
         <form>
           <div className={style.container_input_edit}>
             <InputComponent
@@ -36,8 +36,7 @@ const FormUpdatePriorities = ({ registerUpdate, errorsUpdate }: propsForms) => {
             {errorsUpdate.description?.message && (
               <Error>{errorsUpdate.description.message}</Error>
             )}
-
-<InputComponent
+            <InputComponent
               id="code"
               label="code"
               type="text"
