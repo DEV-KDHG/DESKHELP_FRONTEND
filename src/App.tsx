@@ -8,6 +8,8 @@ import Status from "./screens/Private/status";
 import { Priorities } from "./screens";
 import Category from "./screens/Private/category";
 import DashboardAdmin from "./screens/Private/dashboardAdmin";
+import DashboardAgent from "./screens/Private/dashboardAgent";
+import DashboardUser from "./screens/Private/dashboardUser";
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
         <Route path={"/admin/*"} element={<Private />} />
         <Route path={"/area"} element={<Area />} />
         <Route path={"/dashboard_admin"} element={<DashboardAdmin/>}/>
+        <Route path={"/dashboard_Agent"} element={<DashboardAgent/>}/>
+        <Route path={"/dashboard_user"} element={<DashboardUser/>}/>
         <Route path={"/estado"} element={<Status />} />
         <Route path={"/priorities"} element={<Priorities />} />
         <Route path={"/categoria"} element={<Category />} />
