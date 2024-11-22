@@ -6,13 +6,31 @@ import admiStates from "../../../../public/imgDashboard/estado (1).png";
 import admiCategories from "../../../../public/imgDashboard/categoria (1).png";
 import admiAccounts from "../../../../public/imgDashboard/administracion de cuenta (1).png";
 import estadistica from "../../../../public/imgDashboard/estadistica (1).png";
-import tickts from "../../../../public/imgDashboard/ticket (1).png";
 import admiPriorities from "../../../../public/imgDashboard/alerta (1).png";
+import historial from "../../../../public/imgDashboard/historial.png";
+import password from "../../../../public/imgDashboard/contraseña.png";
+import TicketStatus from "../../../../public/imgDashboard/Ticket status  history.png";
+import { useNavigate } from "react-router-dom";
 
 const DashboardAdmin = () => {
+  const navigate = useNavigate(); // Hook para redirección
+
+  // Función para manejar el cierre de sesión
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Eliminamos el token del localStorage
+    navigate("/"); // Redirigimos a la página de login
+  };
   return (
     <>
-   <br /><br /><br /><br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div className={style.logout_button_container}>
+          <button onClick={handleLogout} className={style.logout_button}>
+            Salir
+          </button>
+        </div>
       <div className={style.container_sidebar}>
         <SideBarComponent />
       </div>
@@ -64,24 +82,32 @@ const DashboardAdmin = () => {
         <Cards
           tamanoImagen={{ height: "245", width: "250" }}
           nombre={"Historial de tickets"}
-          imagen={tickts}
+          imagen={historial}
           redireccion={"/verhistoria"}
         />
 
         <Cards
           tamanoImagen={{ height: "245", width: "250" }}
           nombre={"Cambio de contraseña"}
-          imagen={tickts}
+          imagen={password}
           redireccion={"/cambiaContraseña"}
         />
 
+        <Cards
+          tamanoImagen={{ height: "245", width: "250" }}
+          nombre={"Historial de estado tickets"}
+          imagen={TicketStatus}
+          redireccion={"/estadosTickts-admin"}
+        />
 
 <Cards
           tamanoImagen={{ height: "245", width: "250" }}
-          nombre={"Historial de estado tickets"}
-          imagen={tickts}
-          redireccion={"/estadosTickts-admin"}
+          nombre={"Asignar un ticket"}
+          imagen={TicketStatus}
+          redireccion={"/asignar"}
         />
+
+
       </div>
     </>
   );
