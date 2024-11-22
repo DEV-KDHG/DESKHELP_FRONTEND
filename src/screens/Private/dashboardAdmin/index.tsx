@@ -13,12 +13,9 @@ import SearchBoxComponent from "../../../components/ui/searchBox";
 const DashboardAdmin = () => {
   return (
     <>
-
-<div className={style.search}>
-<SearchBoxComponent  placeholder="Consultar un ticket ..."/>
-
-
-</div>
+      <div className={style.search}>
+        <SearchBoxComponent placeholder="Consultar un ticket ..." />
+      </div>
       <div className={style.container_sidebar}>
         <SideBarComponent />
       </div>
@@ -35,7 +32,7 @@ const DashboardAdmin = () => {
           tamanoImagen={{ height: "245", width: "250" }}
           nombre={"Estadística"}
           imagen={estadistica}
-          redireccion={"/"}
+          redireccion={"/estadisitica"}
         />
 
         {/* Tarjetas de administración de áreas y estados */}
@@ -71,7 +68,22 @@ const DashboardAdmin = () => {
           tamanoImagen={{ height: "245", width: "250" }}
           nombre={"Historial de tickets"}
           imagen={tickts}
-          redireccion={"/dashboard_admin"}
+          redireccion={"/verhistoria"}
+        />
+
+        <Cards
+          tamanoImagen={{ height: "245", width: "250" }}
+          nombre={"Cambio de contraseña"}
+          imagen={tickts}
+          redireccion={"/cambiaContraseña"}
+        />
+
+
+<Cards
+          tamanoImagen={{ height: "245", width: "250" }}
+          nombre={"Historial de estado tickets"}
+          imagen={tickts}
+          redireccion={"/estadosTickts-admin"}
         />
       </div>
     </>

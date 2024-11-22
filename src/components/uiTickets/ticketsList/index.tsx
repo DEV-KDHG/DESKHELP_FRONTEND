@@ -73,11 +73,11 @@ const TicketList = () => {
 
   const columns: GridColDef[] = [
     { field: "code", headerName: "CÓDIGO", width: 80 },
-    { field: "affair", headerName: "ASUNTO", width: 150 },
-    { field: "body", headerName: "CUERPO", width: 200, align: "left" },
+    { field: "affair", headerName: "ASUNTO", width: 100 },
+    { field: "body", headerName: "CUERPO", width: 200 },
     { field: "createDate", headerName: "FECHA DE CREACIÓN", width: 150 },
     { field: "file", headerName: "ARCHIVO", width: 120 },
-    { field: "fullNameUserCrea", headerName: "USUARIO CREADOR", width: 200 },
+    { field: "fullNameUserCrea", headerName: "USUARIO CREADOR", width: 100 },
     { field: "categoryName", headerName: "CATEGORÍA", width: 150 },
     { field: "priorityName", headerName: "PRIORIDAD", width: 150 },
     { field: "statusName", headerName: "ESTADO", width: 150 },
@@ -99,8 +99,8 @@ const TicketList = () => {
   ];
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
-      <Paper sx={{ height: 500, width: "100%" }}>
+    <>
+      <Paper sx={{ height: 500, width: "90%" }}>
         <DataGrid
           rows={rows}
           columns={columns}
@@ -108,11 +108,9 @@ const TicketList = () => {
           sx={{
             "& .MuiDataGrid-cell": {
               fontSize: "1rem",
-              textAlign: "center",
             },
             "& .MuiDataGrid-columnHeaders": {
               fontSize: "1.2rem",
-              textAlign: "center",
             },
           }}
           loading={isLoading}
@@ -180,7 +178,7 @@ const TicketList = () => {
           </Button>
         </Box>
       </Modal>
-    </div>
+    </>
   );
 };
 

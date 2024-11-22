@@ -135,7 +135,7 @@ const Admin = () => {
   return (
     <>
       <div>
-        <Header />
+   
       </div>
       <div className={style.container_sidebar}>
         <SideBarComponent />
@@ -153,7 +153,7 @@ const Admin = () => {
       </div>
 
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "50vh" }}>
-        <Paper sx={{ height: 450, width: "69%" }}>
+        <Paper sx={{ height: 350, width: "85%" }}>
           <DataGrid
             rows={rows}
             columns={columns}

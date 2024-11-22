@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Importa useNavigate
 import InputComponent from "../Input";
 import style from "./ChangesPassword.module.css";
-import ModalMinComponent from "../Modal/ModalMin";
+import ModalMinComponent from "../ModaMin";
 import { useUpdateChangePassword } from "../../../hooks/User/useUpdateChangePassoword";
 
 interface UserChangePasswordDto {
@@ -10,72 +11,87 @@ interface UserChangePasswordDto {
 }
 
 const ChangesPassword = () => {
-  const { isLoading, updateChangePassword } = useUpdateChangePassword(); // Hook for password change mutation
+  const { isLoading, updateChangePassword } = useUpdateChangePassword();
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState(""); // Confirm password state
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(true); // Estado para controlar la visibilidad del modal
+  const navigate = useNavigate(); // Hook para redirección
 
-  // Async function to handle password change
   const handleSubmit = async () => {
-    // Check if passwords match
     if (newPassword !== confirmPassword) {
-      setError("Las contraseñas no coinciden. Por favor, vuelva a ingresarlas.");
+      setError(
+        "Las contraseñas no coinciden. Por favor, vuelva a ingresarlas."
+      );
       return;
     }
 
-    // Prepare the DTO
     const passwordDto: UserChangePasswordDto = {
       currentPassword,
       newPassword,
     };
 
     try {
-      // Pass the DTO to the update function
       await updateChangePassword(passwordDto);
-      // Optionally, clear the error and show a success message
       setError(null);
-      alert("Contraseña cambiada con éxito.");  // Success alert
+      alert("Contraseña cambiada con éxito.");
 
-      // Clear the input fields after success
+      // Limpiar campos y cerrar modal
       setCurrentPassword("");
       setNewPassword("");
       setConfirmPassword("");
+      setIsModalOpen(false);
+
+      // Redirigir a /dashboard_admin
+      navigate("/dashboard_admin");
     } catch (err) {
-      // Handle any errors during the password update
-      setError("Ocurrió un error al cambiar la contraseña. Por favor, inténtelo de nuevo.");
-      alert("Error al cambiar la contraseña. Por favor, inténtelo de nuevo.");  // Error alert
+      setError(
+        "Ocurrió un error al cambiar la contraseña. Por favor, inténtelo de nuevo."
+      );
+      alert("Error al cambiar la contraseña. Por favor, inténtelo de nuevo.");
     }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    navigate("/dashboard_admin"); // Redirige al cerrar el modal
   };
 
   return (
     <div className={style.container_modal_component}>
-      <ModalMinComponent onClick={handleSubmit} title="Cambiar contraseña">
-        <div className={style.form}>
-          <InputComponent
-            id="currentPassword"
-            label="Contraseña actual"
-            type="password"
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
-          />
-          <InputComponent
-            id="newPassword"
-            label="Nueva contraseña"
-            type="password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-          />
-          <InputComponent
-            id="confirmPassword"
-            label="Confirmar nueva contraseña"
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          {error && <span>{error}</span>} {/* Display error if exists */}
-        </div>
-      </ModalMinComponent>
+      {isModalOpen && ( // Mostrar el modal solo si isModalOpen es true
+        <ModalMinComponent
+          onClick={handleSubmit}
+          open={isModalOpen}
+          onClose={handleCloseModal} // Llama a handleCloseModal al cerrar
+          title="Cambiar contraseña"
+        >
+          <div className={style.form}>
+            <InputComponent
+              id="currentPassword"
+              label="Contraseña actual"
+              type="password"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+            />
+            <InputComponent
+              id="newPassword"
+              label="Nueva contraseña"
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
+            <InputComponent
+              id="confirmPassword"
+              label="Confirmar nueva contraseña"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
+        </ModalMinComponent>
+      )}
     </div>
   );
 };

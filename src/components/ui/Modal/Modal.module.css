@@ -1,23 +1,11 @@
-/* Variables CSS para mantener la consistencia y facilitar futuros cambios */
-:root {
-  --color-primary: #0053b2;
-  --color-secondary: #a6a6a6;
-  --color-white: #ffffff;
-  --padding: 20px;
-  --border-radius: 8px;
-  --font-size-header: 2.3rem;
-  --button-padding: 10px 20px;
-  --modal-max-height: 1000vh;
-  --modal-max-width: 600vw;
-  --modal-width: 50vw; 
-}
+ 
 
 /* Contenedor del Modal que ocupa toda la pantalla y centra el contenido */
 .modal_container {
   position: fixed;
   top: 0;
   left: 0;
-  width: 170%;
+  width: 570%;
   height: 160%;
   display: flex;
   justify-content: center;
@@ -25,6 +13,7 @@
   z-index: 10000000;
 }
 
+/* Estilos del Modal */
 /* Estilos del Modal */
 .modal {
   position: fixed;
@@ -34,9 +23,10 @@
   transform: translate(-50%, -50%);
   background-color: var(--color-white);
   padding: var(--padding);
-  width: var(--modal-width);
+  width: 600px;  /* Aumenta el tamaño */
   height: auto;
 }
+
 
 /* Encabezado del Modal */
 .header_form {

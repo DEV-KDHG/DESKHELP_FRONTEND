@@ -12,7 +12,8 @@ import { useGetAllTicket } from "../../../hooks";
 import { useGetHistoryTicketByCode } from "../../../hooks/history/useGetHistoryTicket";
 import { HistoryRecord } from "../../../models/history";
 
- import styles from "./SeeHistory.module.css";
+import styles from "./SeeHistory.module.css";
+import SideBarComponent from "../../ui/SideBar";
 
 const SeeHistory = () => {
   const { ticket, isLoading: isLoadingTickets } = useGetAllTicket();
@@ -52,17 +53,17 @@ const SeeHistory = () => {
 
   // Definir las columnas para la tabla de DataGrid
   const columns: GridColDef[] = [
-    { field: "secuencia", headerName: "SECUENCIA", width: 120 },
+    { field: "secuencia", headerName: "SECUENCIA", width: 50 },
     { field: "fechaRegistro", headerName: "FECHA REGISTRO", width: 180 },
-    { field: "affair", headerName: "ASUNTO", width: 200 },
-    { field: "body", headerName: "CUERPO", width: 300 },
-    { field: "description", headerName: "DESCRIPCIÓN", width: 250 },
-    { field: "advance", headerName: "AVANCE", width: 180 },
-    { field: "name", headerName: "NOMBRE", width: 200 },
-    { field: "file", headerName: "ARCHIVO", width: 150 },
-    { field: "codUserOwner", headerName: "USUARIO CREADOR", width: 200 },
-    { field: "codUserAssigne", headerName: "USUARIO ASIGNADO", width: 200 },
-    { field: "codUserAdvance", headerName: "USUARIO AVANCE", width: 200 },
+    { field: "affair", headerName: "ASUNTO", width: 100 },
+    { field: "body", headerName: "CUERPO", width: 120 },
+    { field: "description", headerName: "DESCRIPCIÓN", width: 120 },
+    { field: "advance", headerName: "AVANCE", width: 100 },
+    { field: "name", headerName: "NOMBRE", width: 120 },
+    { field: "file", headerName: "ARCHIVO", width: 80 },
+    { field: "codUserOwner", headerName: "USUARIO CREADOR", width: 100 },
+    { field: "codUserAssigne", headerName: "USUARIO ASIGNADO", width: 100 },
+    { field: "codUserAdvance", headerName: "USUARIO AVANCE", width: 100 },
   ];
 
   // Mapeamos la historia a las filas para el DataGrid
@@ -82,73 +83,72 @@ const SeeHistory = () => {
   }));
 
   return (
-
-    <div className=""> 
-    <h1>Historial de avance de tickets</h1>
-    <div className={styles.history}>
-
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        sx={{ width: "100%" }}
-      >
-        {/* Selección de código de ticket */}
-        <FormControl
-          size="small"
-          fullWidth
-          sx={{ maxWidth: 300, marginBottom: 2 }}
+    <div className="">
+      <SideBarComponent />
+      <h1>Historial de avance de tickets</h1>
+      <div className={styles.history}>
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          sx={{ width: "100%" }}
         >
-          <InputLabel>Seleccione un Código</InputLabel>
-          <Select
-            value={selectedTicket}
-            onChange={handleChange}
-            label="Código"
-            disabled={isLoadingTickets}
-            sx={{
-              backgroundColor: "white",
-              "& .MuiSelect-icon": {
-                color: "#000",
-              },
-              "& .MuiInputBase-input": {
-                color: "#000",
-              },
-            }}
+          {/* Selección de código de ticket */}
+          <FormControl
+            size="small"
+            fullWidth
+            sx={{ maxWidth: 300, marginBottom: 2 }}
           >
-            <MenuItem value="">Seleccione un código</MenuItem>
-
-            {isLoadingTickets ? (
-              <MenuItem disabled>Loading...</MenuItem>
-            ) : (
-              ticket?.map((item) => (
-                <MenuItem key={item.code} value={item.code}>
-                  {item.code}
-                </MenuItem>
-              ))
-            )}
-          </Select>
-        </FormControl>
-
-        {/* Tabla para mostrar la historia */}
-        {isLoadingHistory ? (
-          <CircularProgress sx={{ marginTop: 4 }} />
-        ) : (
-          <Box sx={{ height: 500, width: "100%", marginTop: "20px" }}>
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              pageSize={10} // Página más grande
-              autoHeight // Hace que la tabla ajuste su altura automáticamente
-              disableSelectionOnClick
+            <InputLabel>Seleccione un Código</InputLabel>
+            <Select
+              value={selectedTicket}
+              onChange={handleChange}
+              label="Código"
+              disabled={isLoadingTickets}
               sx={{
                 backgroundColor: "white",
-                boxShadow: 3, // Agregar sombra para hacerla más visible
-                borderRadius: 1, // Bordes redondeados
+                "& .MuiSelect-icon": {
+                  color: "#000",
+                },
+                "& .MuiInputBase-input": {
+                  color: "#000",
+                },
               }}
-            />
-          </Box>
-        )}
-      </Box>
+            >
+              <MenuItem value="">Seleccione un código</MenuItem>
+
+              {isLoadingTickets ? (
+                <MenuItem disabled>Loading...</MenuItem>
+              ) : (
+                ticket?.map((item) => (
+                  <MenuItem key={item.code} value={item.code}>
+                    {item.code}
+                  </MenuItem>
+                ))
+              )}
+            </Select>
+          </FormControl>
+
+          {/* Tabla para mostrar la historia */}
+          {isLoadingHistory ? (
+            <CircularProgress sx={{ marginTop: 4 }} />
+          ) : (
+            <Box sx={{ height: 500, width: "80%", marginTop: "20px" }}>
+              <DataGrid
+                rows={rows}
+                columns={columns}
+                pageSize={10} // Página más grande
+                autoHeight // Hace que la tabla ajuste su altura automáticamente
+                disableSelectionOnClick
+                sx={{
+                  backgroundColor: "white",
+                  boxShadow: 3, // Agregar sombra para hacerla más visible
+                  borderRadius: 1, // Bordes redondeados
+                }}
+              />
+            </Box>
+          )}
+        </Box>
       </div>
     </div>
   );

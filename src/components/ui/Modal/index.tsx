@@ -46,3 +46,4 @@ const ModalComponent: React.FC<PropsModal> = ({ title, children, onClick }) => {
 };
 
 export default ModalComponent;
+

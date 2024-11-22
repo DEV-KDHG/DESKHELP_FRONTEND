@@ -21,6 +21,7 @@ import ListTicketsInProcess from "../../../components/uiTickets/InProcess";
 import { useState } from "react";
 import OpenTicketsList from "../../../components/uiTickets/openTicketsList";
 import ClosedTicketList from "../../../components/uiTickets/closedTicketList";
+import SideBarComponent from "../../../components/ui/SideBar";
 
 const TicketsAdmin = () => {
   const [selectedComponent, setSelectedComponent] = useState("Abiertos");
@@ -43,14 +44,10 @@ const TicketsAdmin = () => {
   };
 
   return (
+    <> 
+    <SideBarComponent/>
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            WORK ZONE PARA BUSCAR TICKETS
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Grid2 container spacing={3}>
           <Grid component="div" item xs={12}>
@@ -74,7 +71,8 @@ const TicketsAdmin = () => {
         </Grid2>
       </Container>
     </Box>
-  );
+  
+    </>);
 };
 
 export default TicketsAdmin;

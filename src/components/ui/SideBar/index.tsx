@@ -32,11 +32,15 @@ const SideBarComponent = () => {
         {[
           { text: "Home", path: "/dashboard_admin" },
           { text: "Admin Dashboard", path: "/dashboard_admin" },
-          { text: "Servicios", path: "/servicios" },
           { text: "Administracion de cuentas", path: "/admin" },
           { text: "Categorias", path: "/categoria" },
           { text: "Administracion de areas", path: "/area" },
-          { text: "Estados de tickets", path: "/estado" },
+
+          { text: "Estadistica de tickets", path: "/estadisitica" },
+          { text: "Estado de ticketes", path: "/estadosTickts-admin" },
+
+          { text: "Crear estados de tickets", path: "/estado" },
+          { text: "Cambiar contraseña", path: "/cambiaContraseña" },
         ].map(({ text, path }) => (
           <ListItem key={text} disablePadding>
             <ListItemButton onClick={handledNavigation(path)}>
@@ -51,8 +55,7 @@ const SideBarComponent = () => {
       <Divider />
       <List>
         {[
-          { text: "Historial de tickets", path: "/historial-tickets" },
-          { text: "Trazabilidad de tickets", path: "/trazabilidad-tickets" },
+          { text: "Historial de tickets", path: "/verhistoria" },
           { text: "Prioridad", path: "/priorities" },
         ].map(({ text, path }) => (
           <ListItem key={text} disablePadding>
