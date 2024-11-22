@@ -1,0 +1,97 @@
+/* Variables CSS para mantener la consistencia y facilitar futuros cambios */
+:root {
+    --color-primary: #0053b2;
+    --color-secondary: #a6a6a6;
+    --color-white: #ffffff;
+    --padding: 15px;  /* Menos padding para hacerlo más compacto */
+    --border-radius: 8px;
+    --font-size-header: 1.8rem;  /* Fuente más pequeña */
+    --button-padding: 8px 16px;  /* Menos padding en los botones */
+    --modal-max-height: 80vh;  /* Limitar altura del modal */
+    --modal-max-width: 400px;  /* Ancho máximo reducido */
+    --modal-width: 14vw;  /* Ancho reducido a 60% del ancho de la ventana */
+}
+
+/* Contenedor del Modal que ocupa toda la pantalla y centra el contenido */
+.modal_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000000;
+}
+
+/* Estilos del Modal */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border-radius: 1rem;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-white);
+    padding: var(--padding);
+    width: var(--modal-width);
+    max-height: var(--modal-max-height); /* Limitar la altura máxima */
+    height: auto;
+    box-sizing: border-box;  /* Incluir padding en el tamaño */
+}
+
+/* Encabezado del Modal */
+ 
+
+.header_form span {
+    font-size: var(--font-size-header);
+    color: black;
+}
+
+/* Contenedor del Formulario dentro del Modal */
+.form {
+    margin-top: 10px;
+    /* Removido display: grid para .form */
+}
+
+/* Contenedor de Inputs con Grid para distribuir los campos */
+.container_input_form {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr; /* Una columna por defecto */
+    gap: 20px; /* Espacio más pequeño entre inputs */
+    justify-items: center; /* Centrar los inputs */
+}
+
+@media (min-width: 600px) {
+    .container_input_form {
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más grandes */
+    }
+}
+
+/* Contenedor de Botones */
+.button {
+    display: flex;
+    justify-content: center;  /* Centrar los botones */
+    gap: 1rem;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Estilos de los Botones */
+.button_confirm,
+.button_cancel {
+    padding: var(--button-padding);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--color-white);
+}
+
+.button_confirm {
+    background-color: var(--color-primary);
+}
+
+.button_cancel {
+    background-color: var(--color-secondary);
+}
