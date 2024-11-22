@@ -9,7 +9,8 @@ import { Priorities } from "./screens";
 import Category from "./screens/Private/category";
 import DashboardAdmin from "./screens/Private/dashboardAdmin";
 import TicketsAdmin from "./screens/Private/TicketsAdmin";
-import ClosedTicketList from "./components/uiTickets/closedTicketList";
+import CountStadisticChart from "./components/uiTickets/CountStadistic";
+
 
 
 
@@ -29,7 +30,11 @@ function App() {
         <Route path={"/categoria"} element={<Category />} />
         <Route path={"/admin"} element={<Admin />} />
         <Route path={"/tickects-admin"} element={<TicketsAdmin />} />
-        <Route path={"/closed"} element={<ClosedTicketList/>} />
+        <Route path={"/e"} element={<CountStadisticChart />} />
+
+     
+
+        
 
 
         

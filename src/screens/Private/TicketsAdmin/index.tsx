@@ -1,7 +1,9 @@
-import { BarChart } from "@mui/icons-material";
 import {
   AppBar,
   Box,
+  Card,
+  CardContent,
+  CardHeader,
   Container,
   FormControl,
   Grid,
@@ -14,23 +16,14 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-
-import {
-  Bar,
-  CartesianGrid,
-  Legend,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
+import style from "./boards.module.css";
 import ListTicketsInProcess from "../../../components/uiTickets/InProcess";
 import { useState } from "react";
 import OpenTicketsList from "../../../components/uiTickets/openTicketsList";
 import ClosedTicketList from "../../../components/uiTickets/closedTicketList";
 
 const TicketsAdmin = () => {
-  const [selectedComponent, setSelectedComponent] = useState("En progreso");
+  const [selectedComponent, setSelectedComponent] = useState("Abiertos");
 
   const handleChange = (event: SelectChangeEvent<string>) => {
     setSelectedComponent(event.target.value as string);
@@ -38,7 +31,7 @@ const TicketsAdmin = () => {
 
   const renderComponent = () => {
     switch (selectedComponent) {
-      case "En progreso":
+      case "En proceseso":
         return <ListTicketsInProcess />;
       case "Abiertos":
         return <OpenTicketsList />;
@@ -54,7 +47,7 @@ const TicketsAdmin = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Dashboard de Helpdesk
+            WORK ZONE PARA BUSCAR TICKETS
           </Typography>
         </Toolbar>
       </AppBar>
@@ -68,17 +61,16 @@ const TicketsAdmin = () => {
                   label="Estado"
                   value={selectedComponent}
                   onChange={handleChange}
+                  sx={{ backgroundColor: "white", borderRadius: 1 }}
                 >
-                  <MenuItem value="En progreso">En progreso</MenuItem>
+                  <MenuItem value="En proceseso">En proceseso</MenuItem>
                   <MenuItem value="Abiertos">Abiertos</MenuItem>
                   <MenuItem value="Cerrados">Cerrados</MenuItem>
                 </Select>
               </FormControl>
             </Paper>
           </Grid>
-          <Paper sx={{ marginTop: 1 }}>
-            {renderComponent()}
-          </Paper>
+          <div className={style.containerBoard}>{renderComponent()}</div>
         </Grid2>
       </Container>
     </Box>

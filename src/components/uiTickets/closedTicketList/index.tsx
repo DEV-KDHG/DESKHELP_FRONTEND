@@ -1,6 +1,7 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useGetAllTicketsClosed } from "../../../hooks";
 import { Paper } from "@mui/material";
+import style from "./close.module.css"
 
 const ClosedTicketList = () => {
   const { isLoading, ticketClosed } = useGetAllTicketsClosed();
@@ -26,33 +27,37 @@ const ClosedTicketList = () => {
     { field: "body", headerName: "CUERPO", width: 300 },
     { field: "createDate", headerName: "FECHA DE CREACIÓN", width: 150 },
     { field: "file", headerName: "ARCHIVO", width: 120 },
-    { field: "fullNameUserCrea", headerName: "USUARIO CREADOR", width: 200 },
-    { field: "categoryName", headerName: "CATEGORÍA", width: 150 },
-    { field: "priorityName", headerName: "PRIORIDAD", width: 150 },
-    { field: "statusName", headerName: "ESTADO", width: 150 },
+    { field: "fullNameUserCrea", headerName: "USUARIO CREADOR", width: 100 },
+    { field: "categoryName", headerName: "CATEGORÍA", width: 110 },
+    { field: "priorityName", headerName: "PRIORIDAD", width: 110 },
+    { field: "statusName", headerName: "ESTADO", width: 110,
+      renderCell: (params) => (
+        <span className={style.redText}>{params.value}</span>
+      )
+     },
   ];
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
-      <Paper sx={{ height: 500, width: "79%" }}>
+   
+      <Paper sx={{ height: 500, width: "110%" }}>
         <DataGrid
           rows={rows}
           columns={columns}
           autoPageSize
           sx={{
             "& .MuiDataGrid-cell": {
-              fontSize: "1rem",
-              textAlign: "center",
+              fontSize: "1.3rem",
+              
             },
             "& .MuiDataGrid-columnHeaders": {
-              fontSize: "1.2rem",
-              textAlign: "center",
+              fontSize: "1.4rem",
+              
             },
           }}
           loading={isLoading}
         />
       </Paper>
-    </div>
+  
   );
 };
 

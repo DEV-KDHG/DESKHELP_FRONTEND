@@ -2,10 +2,8 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  
-  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
-    backdrop-filter: blur(10px);
-  
+  background-color: #F3EEF8;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
