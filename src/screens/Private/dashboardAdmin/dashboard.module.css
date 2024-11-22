@@ -15,11 +15,11 @@
 /* Estilo para el contenedor de tarjetas */
 .container_cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columnas en pantallas grandes */
+  grid-template-columns: repeat(3, 1fr); /* 4 columnas en pantallas grandes */
   gap: 20px;
   padding: 20px;
-  margin-left: 70px;
-  margin-top: 0rem; /* Añadir margen superior para separar un poco de la parte superior */
+  margin-left: 19rem;
+
 }
 
 /* Estilo para las tarjetas */
