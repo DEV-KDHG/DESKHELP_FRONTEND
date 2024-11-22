@@ -1,0 +1,32 @@
+ .container {
+  height: 80vh;
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado en la parte superior */
+  /* Usa el 100% de la altura de la ventana */
+}
+.cont {
+  background-color: white;
+padding: 4rem ;
+  border-radius: 1rem;
+}
+.container_form {
+  display: flex;
+  flex-direction: column; /* Asegura que los elementos estén en columna */
+  align-items: center; /* Centra los elementos dentro del contenedor */
+  gap: 3rem;
+}
+
+.inp {
+  width: 90%;
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+}
+.ButtonComponet
+{
+    width: 60%;
+}
