@@ -13,9 +13,9 @@ export const UseLogin = () => {
         role === "ADMIN"
           ? "/dashboard_admin"
           : role === "USER"
-          ? "/usuario"
+          ? "/dashboard_user"
           : role === "AGENT"
-          ? "/admin"
+          ? "/dashboard_agente"
           : "/";
 
            navigate(path);
