@@ -1,21 +1,18 @@
 import Cards from "../../../components/ui/Cards";
 import SideBarComponent from "../../../components/ui/SideBar";
 import style from "./dashboard.module.css";
-import admiAreas from "../../../../public/imgDashboard/administracion de areas.png";
-import admiStates from "../../../../public/imgDashboard/estado.png";
-import admiCategories from "../../../../public/imgDashboard/categoria.png";
-import admiAccounts from "../../../../public/imgDashboard/administracion de cuenta.png";
-import estadistica from "../../../../public/imgDashboard/estadistica.png";
-import tickts from "../../../../public/imgDashboard/ticket.png";
-import admiPriorities from "../../../../public/imgDashboard/alerta.png";
-import SearchBoxComponent from "../../../components/ui/searchBox";
+import admiAreas from "../../../../public/imgDashboard/administracion de areas (1).png";
+import admiStates from "../../../../public/imgDashboard/estado (1).png";
+import admiCategories from "../../../../public/imgDashboard/categoria (1).png";
+import admiAccounts from "../../../../public/imgDashboard/administracion de cuenta (1).png";
+import estadistica from "../../../../public/imgDashboard/estadistica (1).png";
+import tickts from "../../../../public/imgDashboard/ticket (1).png";
+import admiPriorities from "../../../../public/imgDashboard/alerta (1).png";
 
 const DashboardAdmin = () => {
   return (
     <>
-      <div className={style.search}>
-        <SearchBoxComponent placeholder="Consultar un ticket ..." />
-      </div>
+   <br /><br /><br /><br />
       <div className={style.container_sidebar}>
         <SideBarComponent />
       </div>
