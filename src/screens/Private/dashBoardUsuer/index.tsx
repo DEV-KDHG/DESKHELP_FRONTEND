@@ -2,8 +2,10 @@ import { useNavigate } from "react-router-dom";
 import style from "./dash.module.css";
 import SideBarComponent from "../../../components/ui/SideBar";
 import Cards from "../../../components/ui/Cards";
-import tickets from "../../../../public/img/DashBoardNew/ticket.png";
-import ticketsProces from "../../../../public/img/DashBoardNew/ticketsprocess.png";
+
+import ticketsProces from "../../../../public/img/DashBoardNew/TicketIN PROCESS.png";
+import ticketsOPEN from "../../../../public/img/DashBoardNew/Ticket OPEN.png";
+import ticketsCLOSED from "../../../../public/img/DashBoardNew/Ticket CLOSED.png";
 import Histoeial from "../../../../public/img/DashBoardNew/historial.png";
 
 const DashBoardUser = () => {
@@ -51,14 +53,14 @@ const DashBoardUser = () => {
         <Cards
           tamanoImagen={{ height: "245", width: "250" }}
           nombre={"Tickets Abierto"}
-          imagen={ticketsProces}
+          imagen={ticketsOPEN}
           redireccion={"/ticketsAbierto"}
         />
 
         <Cards
           tamanoImagen={{ height: "245", width: "250" }}
           nombre={"Tickets Progreso"}
-          imagen={ticketsProces}
+          imagen={ticketsCLOSED}
           redireccion={"/ticketesEnProgreso"}
         />
       </div>
