@@ -26,4 +26,4 @@ export * from './uiStatus/formsRegister/index';
 export * from './uiTickets/closedTicketsInSession/index';
 export * from './uiTickets/openTicketsInSession/index';
 export * from './uiTickets/openTicketsList/index';
-export * from './uiTickets/ticketsList/index';
+export * from './uiTickets/ticketsListUser/index';

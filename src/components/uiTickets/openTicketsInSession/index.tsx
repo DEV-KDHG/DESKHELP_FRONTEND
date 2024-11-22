@@ -1,6 +1,7 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Paper } from "@mui/material";
 import { useGetAllTicketOpenInSession } from "../../../hooks";
+import SideBarUser from "../../ui/sideBarUser";
 
 const OpenTicketsInSession = () => {
   const { isLoading, ticketsInSession } = useGetAllTicketOpenInSession();
@@ -33,6 +34,7 @@ const OpenTicketsInSession = () => {
   ];
 
   return (
+    <> <SideBarUser/> 
     <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
       <Paper sx={{ height: 500, width: "100%" }}>
         <DataGrid
@@ -53,6 +55,7 @@ const OpenTicketsInSession = () => {
         />
       </Paper>
     </div>
+    </>
   );
 };
 

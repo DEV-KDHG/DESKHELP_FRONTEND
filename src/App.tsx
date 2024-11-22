@@ -8,16 +8,23 @@ import { Priorities } from "./screens";
 import Category from "./screens/Private/category";
 import DashboardAdmin from "./screens/Private/dashboardAdmin";
 import TicketsAdmin from "./screens/Private/TicketsAdmin";
-import TicketList from "./components/uiTickets/ticketsList";
+import TicketList from "./components/uiTickets/ticketsListUser";
 import SeeHistory from "./components/uiTickets/seeHistory";
 import ChangesPassword from "./components/ui/changesPassword";
-import CountStadisticChart from "./components/uiTickets/CountStadistic";
 import { ClosedTicketsInSession } from "./components";
 import OpenTicketsInSession from "./components/uiTickets/openTicketsInSession";
 import ListTicketsInProgressInSession from "./components/uiTickets/InProgress";
 import DashBoardAgent from "./screens/Private/dashBoardAgent";
 import DashBoardUser from "./screens/Private/dashBoardUsuer";
 import AssignTicketComponent from "./components/uiTickets/ticketsAssing";
+import SeeHistoryUser from "./components/uiTickets/seeHistoryUser";
+import TicketListAgente from "./components/uiTickets/ticketsListAgente";
+import ListTicketsInProgressInSessionAgent from "./components/uiTickets/InProgressAgent";
+import ClosedTicketsInSessionAgent from "./components/uiTickets/closedTicketsInSessionAgent";
+import OpenTicketsInSessionAgent from "./components/uiTickets/openTicketsInSessionAgent";
+import CountStadisticChart from "./components/uiTickets/countStadistic";
+import TicketListAgemt from "./components/uiTickets/ticketsListAGent";
+import SeeHistoryAgent from "./components/uiTickets/seeHistoryAgent";
 
 function App() {
   return (
@@ -27,6 +34,9 @@ function App() {
         <Route path={"/helpdesk/*"} element={<PublicView />} />
         <Route path={"/admin/*"} element={<Private />} />
         <Route path={"/verhistoria"} element={<SeeHistory />} />
+        <Route path={"/verhistoriaUser"} element={<SeeHistoryUser />} />
+        <Route path={"/verhistoriaAgentes"} element={<SeeHistoryAgent/>} />
+        
         <Route path={"/crearAvanceYListarTickets"} element={<TicketList />} />
         <Route path={"/area"} element={<Area />} />
         <Route path={"/dashboard_admin"} element={<DashboardAdmin />} />
@@ -42,14 +52,27 @@ function App() {
         <Route path={"/dashboard_agente"} element={<DashBoardAgent />} />
         <Route path={"/dashboard_user"} element={<DashBoardUser />} />
         <Route path={"/asignar"} element={<AssignTicketComponent />} />
+        <Route
+          path={"/crearAvanceYListarTicketsAgente"}
+          element={<TicketListAgemt/>}
+        />
+        <Route path={"/ticketsAbiertoAgent"} element={<OpenTicketsInSessionAgent />} />
 
 
-        
+
+        <Route path={"/ticketsCerradoAgent"} element={<ClosedTicketsInSessionAgent />} />
+
+
 
         <Route
           path={"/ticketesEnProgreso"}
           element={<ListTicketsInProgressInSession />}
-        />
+        />  <Route
+        path={"/ticketesEnProgresoAgente"}
+        element={<ListTicketsInProgressInSessionAgent />}
+      />
+
+
       </Routes>
     </BrowserRouter>
   );

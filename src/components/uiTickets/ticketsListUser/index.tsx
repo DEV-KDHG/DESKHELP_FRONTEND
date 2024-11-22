@@ -9,18 +9,19 @@ import {
   Paper,
 } from "@mui/material";
 import { useCreateHistory, useGetAllTicket } from "../../../hooks";
+import SideBarUser from "../../ui/sideBarUser";
 
-const TicketList = () => {
+const TicketListUser = () => {
   const { isLoading, ticket } = useGetAllTicket();
   const { createHistoryMutation, isPending } = useCreateHistory();
 
   // Estados para el modal
   const [openModal, setOpenModal] = useState(false);
   const [selectedCode, setSelectedCode] = useState<string | null>(null);
-  const [advance, setAdvance] = useState<string>(""); // Estado para 'advance'
-  const [file, setFile] = useState<string>(""); // Estado para 'file'
+  const [advance, setAdvance] = useState<string>("");
+  const [file, setFile] = useState<string>("");
 
-  // Si ticket es un arreglo
+  // Mapear datos de tickets
   const rows =
     ticket?.map((ticketItem, index) => ({
       id: index,
@@ -35,38 +36,39 @@ const TicketList = () => {
       statusName: ticketItem.statusName,
     })) || [];
 
+  // Abrir el modal y limpiar campos
   const handleOpenModal = (code: string) => {
-    setSelectedCode(code); // Guardar el código seleccionado
-    setAdvance(""); // Limpiar el campo 'advance' al abrir el modal
-    setFile(""); // Limpiar el campo 'file' al abrir el modal
-    setOpenModal(true); // Abrir el modal
+    setSelectedCode(code);
+    setAdvance("");
+    setFile("");
+    setOpenModal(true);
   };
 
+  // Cerrar el modal y limpiar selección
   const handleCloseModal = () => {
-    setOpenModal(false); // Cerrar el modal
-    setSelectedCode(null); // Limpiar el código seleccionado
+    setOpenModal(false);
+    setSelectedCode(null);
   };
 
+  // Validar y enviar datos
   const handleSubmit = async () => {
-    if (selectedCode && advance && file) {
-      // Lógica para crear historia con el código, avance y archivo
+    if (!advance || !file) {
+      alert("Por favor, completa todos los campos antes de enviar.");
+      return;
+    }
+
+    if (selectedCode) {
       try {
         await createHistoryMutation({
           ticketCode: selectedCode,
           advance,
           file,
         });
-        alert(" Creado exitosamente historia:");
-
-        // Limpiar los campos y cerrar el modal
-        setAdvance("");
-        setFile("");
-        setSelectedCode(null);
+        alert("¡Historia creada exitosamente!");
         handleCloseModal();
-
-        // Puedes realizar más acciones si es necesario, como recargar la lista de tickets.
       } catch (error) {
         console.error("Error al crear historia:", error);
+        alert("Ocurrió un error al intentar crear la historia.");
       }
     }
   };
@@ -83,7 +85,7 @@ const TicketList = () => {
     { field: "statusName", headerName: "ESTADO", width: 150 },
     {
       field: "actions",
-      headerName: "Crear historia",
+      headerName: "Acciones",
       width: 150,
       renderCell: (params) => (
         <Button
@@ -100,18 +102,15 @@ const TicketList = () => {
 
   return (
     <>
-      <Paper sx={{ height: 500, width: "90%" }}>
+    <SideBarUser/>
+      <Paper sx={{ height: 500, width: "90%", margin: "auto", mt: 3 }}>
         <DataGrid
           rows={rows}
           columns={columns}
           autoPageSize
           sx={{
-            "& .MuiDataGrid-cell": {
-              fontSize: "1rem",
-            },
-            "& .MuiDataGrid-columnHeaders": {
-              fontSize: "1.2rem",
-            },
+            "& .MuiDataGrid-cell": { fontSize: "1rem" },
+            "& .MuiDataGrid-columnHeaders": { fontSize: "1.2rem" },
           }}
           loading={isLoading}
         />
@@ -159,27 +158,27 @@ const TicketList = () => {
             onChange={(e) => setFile(e.target.value)}
             sx={{ mt: 2 }}
           />
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ mt: 3 }}
-            onClick={handleSubmit}
-            disabled={isPending} // Deshabilitar el botón mientras se está enviando
-          >
-            Crear avance de historia
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            sx={{ mt: 3, ml: 2 }}
-            onClick={handleCloseModal}
-          >
-            Cerrar
-          </Button>
+          <Box sx={{ mt: 3, display: "flex", justifyContent: "space-between" }}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleSubmit}
+              disabled={isPending}
+            >
+              Crear
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleCloseModal}
+            >
+              Cerrar
+            </Button>
+          </Box>
         </Box>
       </Modal>
     </>
   );
 };
 
-export default TicketList;
+export default TicketListUser;

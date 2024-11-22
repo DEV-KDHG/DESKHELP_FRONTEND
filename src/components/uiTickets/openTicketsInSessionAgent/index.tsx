@@ -1,14 +1,15 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { useGetAllTicketsClosedInSession } from "../../../hooks";
 import { Paper } from "@mui/material";
+import { useGetAllTicketOpenInSession } from "../../../hooks";
 import SideBarUser from "../../ui/sideBarUser";
+import SideBarAgente from "../../ui/SideBarAgente";
 
-export const ClosedTicketsInSession = () => {
-  const { isLoading, ticketClosed } = useGetAllTicketsClosedInSession();
+const OpenTicketsInSessionAgent = () => {
+  const { isLoading, ticketsInSession } = useGetAllTicketOpenInSession();
 
-  // Si ticketClosed es un arreglo
+  // Si TicketsInSession es un arreglo
   const rows =
-    ticketClosed?.map((ticket, index) => ({
+    ticketsInSession?.map((ticket, index) => ({
       id: index,
       code: ticket.code,
       affair: ticket.affair,
@@ -34,8 +35,7 @@ export const ClosedTicketsInSession = () => {
   ];
 
   return (
-
-    <> <SideBarUser /> 
+    <> <SideBarAgente/>
     <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
       <Paper sx={{ height: 500, width: "100%" }}>
         <DataGrid
@@ -60,4 +60,4 @@ export const ClosedTicketsInSession = () => {
   );
 };
 
-export default ClosedTicketsInSession;
+export default OpenTicketsInSessionAgent;

@@ -1,10 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import style from "./dash.module.css";
-import SideBarComponent from "../../../components/ui/SideBar";
-import Cards from "../../../components/ui/Cards";
-import tickets from "../../../../public/img/DashBoardNew/ticket.png";
+ import Cards from "../../../components/ui/Cards";
 import ticketsProces from "../../../../public/img/DashBoardNew/ticketsprocess.png";
 import Histoeial from "../../../../public/img/DashBoardNew/historial.png";
+import SideBarUser from "../../../components/ui/sideBarUser";
 
 const DashBoardUser = () => {
   const navigate = useNavigate(); // Hook para redirección
@@ -27,7 +26,7 @@ const DashBoardUser = () => {
         </button>
       </div>
       <div className={style.container_sidebar}>
-        <SideBarComponent />
+        <SideBarUser />
       </div>
 
       <div className={style.container_cards}>
@@ -38,7 +37,14 @@ const DashBoardUser = () => {
           tamanoImagen={{ height: "245", width: "250" }}
           nombre={"Historial"}
           imagen={Histoeial}
-          redireccion={"/verhistoria"}
+          redireccion={"/verhistoriaUser"}
+        />
+            {/* Tarjetas de administración de categorías y prioridades */}
+            <Cards
+          tamanoImagen={{ height: "245", width: "250" }}
+          nombre={"Crear avance de historia"}
+          imagen={Histoeial}
+          redireccion={"/crearAvanceYListarTickets"}
         />
 
         <Cards

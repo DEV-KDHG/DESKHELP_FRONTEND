@@ -2,9 +2,10 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useGetAllTicketInProcessInSession } from "../../../hooks"
 import { Paper } from "@mui/material";
 import SideBarUser from "../../ui/sideBarUser";
+import SideBarAgente from "../../ui/SideBarAgente";
 
 
-const ListTicketsInProgressInSession = () => {
+const ListTicketsInProgressInSessionAgent = () => {
     const {ticketProccesInSession:tickets, isLoading}=useGetAllTicketInProcessInSession();
 
     const columns: GridColDef[] = [
@@ -35,8 +36,7 @@ const ListTicketsInProgressInSession = () => {
 
   return (
     <>
-    <SideBarUser/> 
-
+<SideBarAgente/>
     <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
     <Paper sx={{ height: 450, width: "100%" }}>
       <DataGrid
@@ -68,4 +68,4 @@ const ListTicketsInProgressInSession = () => {
   )
 }
 
-export default ListTicketsInProgressInSession
+export default ListTicketsInProgressInSessionAgent

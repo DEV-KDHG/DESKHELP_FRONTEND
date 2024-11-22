@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import ButtonComponet from "../../ui/Button";
 import { AssignTicketDto } from "../../../models/tickets";
+import SideBarComponent from "../../ui/SideBar";
 
 const AssignTicketComponent = () => {
   const { UpdateTicketAssing, isLoading: isUpdateLoading } =
@@ -71,6 +72,9 @@ const AssignTicketComponent = () => {
   };
 
   return (
+    <>
+    <SideBarComponent/>
+ 
     <div className={styles.container}>
       <div className={styles.cont}>
         <div className={styles.container_form}>
@@ -167,6 +171,7 @@ const AssignTicketComponent = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
